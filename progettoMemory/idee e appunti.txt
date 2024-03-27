@@ -1,0 +1,21 @@
+
+
+1) far si che le stanzed possano essere + di una e che le persone possano decidere in che stanza entrare
+3)creare un file al cui interno sono contenute tutti i nomi delle stanze aperte, tutte le stanze [possibile file con le stanze sche stanno giocando]
+2)far si che la stanza sia gestita in file (3)[1 per le immagini, 2 per i partecipanti, 3 per i punti]:
+    //[nomeSala].img.txt
+    ...\n
+    ...\n
+
+    //[nomeSala].player.txt
+    ...\n
+    ...\n
+
+    //[nomeSala].scores.txt(in ordine uguale rispetto ai player)
+    ...\n
+    ...\n
+
+
+//debug: vedere perche` nonm rimanda (selezione) ad admin.php
+
+4) far si che si possa tornare alla home quando si è nell schermata di selezione immagini

@@ -1,0 +1,44 @@
+-) indirizzo ip(cod stanza)
+
+-) un unico server con due pagine
+
+	-) ip/admin profe
+	-) ip/studente stendente
+
+-) vengono inseriti i nomi degli studenti dagli studenti
+
+
+1) da l'immagine e devi indovinare l'autore o il personaggio
+	-) a random (immagini)
+		-) successivamente implementare la scelta della profe
+
+	
+
+	-) compaiono le lineette che indica quanti caratteri ci sono
+		-) con il tempo appaiono le lettere
+
+
+
+	-) se indovini il nome segnale di successo
+		-) possibile punteggio
+			-) quante ne hai azzeccate
+		-)
+
+
+
+	-) se sbagli segnale di fallimento 
+		-) puoi riprovare con la stessa immagine (meh) 
+			//-) due tentativi
+		-)
+
+
+
+	-) si invia la risposta quando tutti l'hanno data / scade il tempo
+
+
+	-) il tempo limite per ogni round viene scelto dalla profe
+
+
+	-) quanti round (quante immagini) viene scelto all'inizio dalla profe
+
+	-)alla fne fa vedere i punteggi n scaa di tutti

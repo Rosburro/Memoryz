@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<memory_game>
+
+	<personaggio>
+		<indice>1</indice>
+		<n_completo>Gabriele D'Annunzio</n_completo>
+		<img>Annunzio.jpg</img>
+		
+		<guess>Gabriele D'Annunzio</guess>
+		<guess>Gabriele D' Annunzio</guess>
+		<guess>Gabriele D Annunzio</guess>
+		<guess>D Annunzio Gabriele </guess>
+		<guess>D'Annunzio Gabriele </guess>
+		<guess>D Annunzio</guess>
+		<guess>D'Annunzio</guess>
+		<guess>D' Annunzio</guess>
+		
+		<sugg>Dandy</sugg>
+		<sugg>Vittoriale</sugg>
+		<sugg>Propaganda</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>2</indice>
+		<n_completo>Yasser Arafat</n_completo>
+		<img>Arafat.jpg</img>
+		
+		<guess>Yasser Arafat</guess>
+		<guess>Arafat Yasser</guess>
+		<guess>Yasser</guess>
+		<guess>Arafat</guess>
+		
+		<sugg>Palestina</sugg>
+		<sugg>Intifada</sugg>
+		<sugg>Accordo di Oslo</sugg>
+		<sugg>Nobel per la pace</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>3</indice>
+		<n_completo>Paolo Borsellino</n_completo>
+		<img>Borsellino.jpg</img>
+		
+		<guess>Paolo Borsellino</guess>
+		<guess>Borsellino Paolo</guess>
+		<guess>Borsellino</guess>
+		
+		<sugg>Magistrato</sugg>
+		<sugg>Antimafia</sugg>
+		<sugg>Maxiprocesso</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>4</indice>
+		<n_completo>Giosuè Carducci</n_completo>
+		<img>Carducci.jpg</img>
+		
+		<guess>Giosuè Carducci</guess>
+		<guess>Giosue Carducci</guess>
+		<guess>Giosué Carducci</guess>
+		<guess>Carducci Giosuè</guess>
+		<guess>Carducci Giosue</guess>
+		<guess>Carducci Giosué</guess>
+		<guess>Carducci</guess>
+		
+		<sugg>Poeta vate</sugg>
+		<sugg>Odi Barbare</sugg>
+		<sugg>Risorgimento</sugg>
+		<sugg>Nobel per la letteratura</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>5</indice>
+		<n_completo>Fidel Castro</n_completo>
+		<img>Castro.jpg</img>
+		
+		<guess>Fidel Castro</guess>
+		<guess>Castro Fidel</guess>
+		
+		<sugg>Rivoluzione cubana</sugg>
+		<sugg>Comunismo</sugg>
+		<sugg>Guerriglia</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>6</indice>
+		<n_completo>Winston Churchill</n_completo>
+		<img>Churchill.jpg</img>
+		
+		<guess>Winston Churchill</guess>
+		<guess>Churchill Winston</guess>
+		<guess>Churchill</guess>
+		
+		<sugg>WWII</sugg>
+		<sugg>Primo Ministro</sugg>
+		<sugg>Inghilterra</sugg>
+		<sugg>Nobel per la letteratura</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>7</indice>
+		<n_completo>Bill Clinton</n_completo>
+		<img>Clinton.jpg</img>
+		
+		<guess>Bill Clinton</guess>
+		<guess>Clinton Bill</guess>
+		<guess>Clinton</guess>
+		
+		<sugg>USA</sugg>
+		<sugg>Impeachment</sugg>
+		<sugg>Nafta</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>8</indice>
+		<n_completo>Vittorio Emanuele III</n_completo>
+		<img>Emanuele.jpg</img>
+		
+		<guess>Vittorio Emanuele III</guess>
+		<guess>Vittorio Emanuele 3</guess>
+		<guess>Emanuele III</guess>
+		<guess>Emanuele 3</guess>
+		
+		<sugg>Marcia su Roma</sugg>
+		<sugg>Nomina di Mussolini</sugg>
+		<sugg>Re d’Italia</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>9</indice>
+		<n_completo>Giovanni Falcone</n_completo>
+		<img>Falcone.jpg</img>
+		
+		<guess>Giovanni Falcone</guess>
+		<guess>Falcone Giovanni</guess>
+		<guess>Falcone</guess>
+		
+		<sugg>Magistrato</sugg>
+		<sugg>Antimafia</sugg>
+		<sugg>Strage di Capaci</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>10</indice>
+		<n_completo>Giovanni Giolitti</n_completo>
+		<img>Giolitti.jpg</img>
+		
+		<guess>Giovanni Giolitti</guess>
+		<guess>Giolitti Giovanni</guess>
+		<guess>Giolitti</guess>
+		
+		<sugg>Meridione</sugg>
+		<sugg>Libia</sugg>
+		<sugg>Bifronte</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>11</indice>
+		<n_completo>Michail Gorbačëv</n_completo>
+		<img>Gorbacev.jpg</img>
+		
+		<guess>Michail Gorbaciov</guess>
+		<guess>Michail Gorbacev</guess>
+		<guess>Gorbacev Michail</guess>
+		<guess>Gorbaciov Michail</guess>
+		<guess>Gorbacev</guess>
+		<guess>Gorbaciov</guess>
+		
+		<sugg>Caduta muro di Berlino</sugg>
+		<sugg>Fine URSS</sugg>
+		<sugg>Perestrojka</sugg>
+		<sugg>Nobel per la pace</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>12</indice>
+		<n_completo>Che Guevara</n_completo>
+		<img>Guevara.jpg</img>
+		
+		<guess>Che Guevara</guess>
+		
+		<sugg>Rivoluzione cubana</sugg>
+		<sugg>Guerriglia</sugg>
+		<sugg>Comunismo</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>13</indice>
+		<n_completo>Adolf Hitler</n_completo>
+		<img>Hitler.jpg</img>
+		
+		<guess>Adolf Hitler</guess>
+		<guess>Hitler Adolf</guess>
+		<guess>Hitler</guess>
+		
+		<sugg>Nazismo</sugg>
+		<sugg>Fuhrer</sugg>
+		<sugg>Olocausto</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>14</indice>
+		<n_completo>John Fitzgerald Kennedy</n_completo>
+		<img>Kennedy.jpg</img>
+		
+		<guess>John Fitzgerald Kennedy</guess>
+		<guess>John Kennedy</guess>
+		<guess>John F. Kennedy</guess>
+		<guess>Fitzgerald Kennedy</guess>
+		<guess>Kennedy</guess>
+		<guess>J. F. Kennedy</guess>
+		<guess>JFK</guess>
+		<guess>J. F. K.</guess>
+		
+		<sugg>USA</sugg>
+		<sugg>Guerra fredda</sugg>
+		<sugg>Crisi dei missili cubani</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>15</indice>
+		<n_completo>Vladimir Lenin</n_completo>
+		<img>Lenin.jpg</img>
+		
+		<guess>Vladimir Lenin</guess>
+		<guess>Lenin Vladimir</guess>
+		<guess>Lenin</guess>
+		
+		<sugg>NEP</sugg>
+		<sugg>Bolscevichi</sugg>
+		<sugg>Russia</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>16</indice>
+		<n_completo>Giacomo Leopardi</n_completo>
+		<img>Leopardi.jpg</img>
+		
+		<guess>Giacomo Leopardi</guess>
+		<guess>Leopardi Giacomo</guess>
+		<guess>Leopardi</guess>
+		
+		<sugg>Infinito</sugg>
+		<sugg>Pessimismo</sugg>
+		<sugg>Piacere</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>17</indice>
+		<n_completo>Giacomo Matteotti</n_completo>
+		<img>Matteotti.jpg</img>
+		
+		<guess>Giacomo Matteotti</guess>
+		<guess>Matteotti Giacomo</guess>
+		<guess>Matteotti</guess>
+		
+		<sugg>Parlamentare</sugg>
+		<sugg>Brogli</sugg>
+		<sugg>Delitto</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>18</indice>
+		<n_completo>Eugenio Montale</n_completo>
+		<img>Montale.jpg</img>
+		
+		<guess>Eugenio Montale</guess>
+		<guess>Montale Eugenio</guess>
+		<guess>Montale</guess>
+		
+		<sugg>Ermetismo</sugg>
+		<sugg>Satura</sugg>
+		<sugg>Mal di vivere</sugg>
+		<sugg>Nobel per la letteratura</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>19</indice>
+		<n_completo>Benito Mussolini</n_completo>
+		<img>Mussolini.jpg</img>
+		
+		<guess>Benito Mussolini</guess>
+		<guess>Mussolini Benito</guess>
+		<guess>Mussolini</guess>
+		
+		<sugg>Fascismo (PNF)</sugg>
+		<sugg>Duce</sugg>
+		<sugg>Marcia su Roma</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>20</indice>
+		<n_completo>Giovanni Pascoli</n_completo>
+		<img>Pascoli.jpg</img>
+		
+		<guess>Giovanni Pascoli</guess>
+		<guess>Pascoli Giovanni</guess>
+		<guess>Pascoli</guess>
+		
+		<sugg>Nido</sugg>
+		<sugg>Piccole cose</sugg>
+		<sugg>Simbolismo</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>21</indice>
+		<n_completo>Pier Paolo Pasolini</n_completo>
+		<img>Pasolini.jpg</img>
+		
+		<guess>Pier Paolo Pasolini</guess>
+		<guess>PierPaolo Pasolini</guess>
+		<guess>Pasolini Pier Paolo</guess>
+		<guess>Pasolini PierPaolo</guess>
+		<guess>Pasolini</guess>
+		
+		<sugg>Controversie</sugg>
+		<sugg>Regista</sugg>
+		<sugg>Neorealismo</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>22</indice>
+		<n_completo>Luigi Pirandello</n_completo>
+		<img>Pirandello.jpg</img>
+		
+		<guess>Luigi Pirandello</guess>
+		<guess>Pirandello Luigi</guess>
+		<guess>Pirandello</guess>
+		
+		<sugg>Maschere</sugg>
+		<sugg>Mattia Pascal</sugg>
+		<sugg>Uno, nessuno, centomila</sugg>
+		<sugg>Nobel per la letteratura</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>23</indice>
+		<n_completo>Yitzhak Rabin</n_completo>
+		<img>Rabin.jpg</img>
+		
+		<guess>Rabin Yitzhak</guess>
+		<guess>Yitzhak Rabin</guess>
+		<guess>Yitzhak</guess>
+		<guess>Rabin</guess>
+		
+		<sugg>Israele</sugg>
+		<sugg>Intifada</sugg>
+		<sugg>Accordo di Oslo</sugg>
+		<sugg>Nobel per la pace</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>24</indice>
+		<n_completo>Ronald Reagan</n_completo>
+		<img>Reagan.jpg</img>
+		
+		<guess>Ronald Reagan</guess>
+		<guess>Reagan Ronald</guess>
+		<guess>Reagan</guess>
+		
+		<sugg>USA</sugg>
+		<sugg>Evil Empire</sugg>
+		<sugg>Guerra fredda</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>25</indice>
+		<n_completo>Franklin Delano Roosevelt</n_completo>
+		<img>Roosevelt.jpg</img>
+		
+		<guess>Franklin Roosevelt</guess>
+		<guess>Roosevelt Franklin</guess>
+		<guess>Roosevelt</guess>
+		
+		<sugg>USA</sugg>
+		<sugg>New Deal</sugg>
+		<sugg>WWII</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>26</indice>
+		<n_completo>Nikita Sergeevič Chruščëv</n_completo>
+		<img>Sergeevic.jpg</img>
+		
+		<guess>Chruscev Sergeevic</guess>
+		<guess>Sergeevic Chruscev</guess>
+		<guess>Chruscev</guess>
+		<guess>Sergeevic</guess>
+		
+		<sugg>Destalinizzazione</sugg>
+		<sugg>Crisi dei missili cubani</sugg>
+		<sugg>PCUS</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>27</indice>
+		<n_completo>Iosif Stalin</n_completo>
+		<img>Stalin.jpg</img>
+		
+		<guess>Stalin</guess>
+		
+		<sugg>Totalitarismo</sugg>
+		<sugg>URSS</sugg>
+		<sugg>Gulag</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>28</indice>
+		<n_completo>Italo Svevo</n_completo>
+		<img>Svevo.jpg</img>
+		
+		<guess>Italo Svevo</guess>
+		<guess>Svevo Italo</guess>
+		<guess>Svevo</guess>
+		
+		<sugg>Inettitudine</sugg>
+		<sugg>Psicoanalisi</sugg>
+		<sugg>Coscienza (di Zeno)</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>29</indice>
+		<n_completo>Lev Davydovič Trockij</n_completo>
+		<img>Trockij.jpg</img>
+		
+		<guess>Trockij</guess>
+		
+		<sugg>Rivoluzione permanente</sugg>
+		<sugg>Armare rosse</sugg>
+		<sugg>Esilio</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>30</indice>
+		<n_completo>Giuseppe Ungaretti</n_completo>
+		<img>Ungaretti.jpg</img>
+		
+		<guess>Ungaretti</guess>
+		<guess>Giuseppe Ungaretti</guess>
+		<guess>Ungaretti Giuseppe</guess>
+		
+		<sugg>Trincea</sugg>
+		<sugg>Soldati</sugg>
+		<sugg>Veglia</sugg>
+	</personaggio>
+
+	<personaggio>
+		<indice>31</indice>
+		<n_completo>Giovanni Verga</n_completo>
+		<img>Verga.jpg</img>
+		
+		<guess>Giovanni Verga</guess>
+		<guess>Verga Giovanni</guess>
+		<guess>Verga</guess>
+		
+		<sugg>Verismo</sugg>
+		<sugg>Mastro don Gesualdo</sugg>
+		<sugg>Cavalleria Rusticana</sugg>
+	</personaggio>
+
+	<personaggio>
+		<n_completo>Thomas Woodrow Wilson</n_completo>
+		<indice>32</indice>
+		<img>Wilson.jpg</img>
+		
+		<guess>Thomas Woodrow Wilson</guess>
+		<guess>Woodrow Thomas Wilson</guess>
+		<guess>Thomas Wilson Woodrow</guess>
+		<guess>Wilson Thomas Woodrow</guess>
+		<guess>Woodrow Wilson Thomas</guess>
+		<guess>Wilson Woodrow Thomas</guess>
+		<guess>Thomas Wilson</guess>
+		<guess>Wilson Thomas</guess>
+		<guess>Woodrow Wilson</guess>
+		<guess>Wilson Woodrow</guess>
+		<guess>Wilson</guess>
+	
+		<sugg>USA</sugg> 
+		<sugg>14 Punti</sugg> 
+		<sugg>Conferenza Parigi 1919</sugg> 
+		<sugg>Nobel per la pace</sugg> 
+		
+	</personaggio>
+
+
+</memory_game>

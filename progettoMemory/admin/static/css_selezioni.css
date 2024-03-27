@@ -1,0 +1,31 @@
+.zoom {
+    transition: transform .2s; 
+}
+
+.zoom:hover {
+    transform: scale(1.1); 
+}
+
+table td {
+    background-color: #ffcccc;
+}
+
+div.immagine {
+    position: fixed; 
+    bottom: 40px;
+    right: 40px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: transform .2s;
+}
+
+
+div.tabella {
+   text-align:center;
+}
+
+
+input[type='submit']:hover {
+    transform: scale(1.1);
+}
+
