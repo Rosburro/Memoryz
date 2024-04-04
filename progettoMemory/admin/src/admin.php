@@ -21,14 +21,16 @@
 		require '../../sql/config.php';
 			session_start();
 
-			if($_SESSION['n_round']>=$_SESSION['numeroRound']){
+			if($_SESSION['n_round']>$_SESSION['numeroRound']){
 				echo "partita finita";
+				
 				//cose che servono per finire la partita (uguali al file finePartita.php
 				$_SESSION['partitaIniziata']=False;
 				$_SESSION['inizioRichieste']=false;
 				$_SESSION['n_round']=0;
 				$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
 				$connessione->query("update stanze set inCorso=0, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				echo "<button onclick='onClickterminaPartita()'>termina partita</button>";
 				//header("location: ./finePartita.php");
 			}
 
@@ -77,7 +79,7 @@
 					aggiungi_stanza($stanza);
 				}
 
-				//header("Location: ./admin.php");
+				header("Location: ./admin.php");
 			}
 
 			if(isset($_SESSION['partitaIniziata']) && $_SESSION['partitaIniziata']==True){//partita iniziata
@@ -189,9 +191,12 @@
 				$GLOBALS['connessione']->query("delete from img_stanza where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nell'eliminazione delle immagini della stanza");
 				echo $immagini;
 				if($immagini=="all"){
-					$personaggi = count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio//*"));
+					
+					$personaggi = count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio"));
+					// echo " ".count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio"));
 					for($i=0;$i<$personaggi;$i++){
 						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',$i)") or die("errore nell'inserire un immagine della stanza");
+						//echo $i." ";
 					}
 				}else{
 					$appoggio_immagini = $_SESSION["immaginiSelezionate"];
