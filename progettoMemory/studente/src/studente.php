@@ -14,6 +14,8 @@
 	<?php
 		//TODO verificare se il nome nella get è corretto o meno
 		session_start();
+
+		//TODO da mettere ancora le guess (una volta che dario le ha implementate nel js)
 		if(isset($_SESSION['nomePartecipante']) && isset($_SESSION['stanzaSelezionata'])){
 			echo "<link rel='stylesheet' href='../static/studenteInCorso.css'>
 					<script src='../static/studenteInStanza.js'></script>";
@@ -43,6 +45,8 @@
 			window.location.href="esciDallaStanza.php";
 		}
 	</script>
+
+	
 
 </body>
 </html>

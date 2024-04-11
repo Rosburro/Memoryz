@@ -19,7 +19,7 @@
 								inCorso  TINYINT(1) default 0
 							)") or die("errore nella creazione della tabella stanze");
 	
-	
+	//far si che ci sia una variabile che controlla se lo studente ha inviato o meno la risposta
 	$connessione-> query("create table if not exists partecipanti
 							(
 								username varchar(20),

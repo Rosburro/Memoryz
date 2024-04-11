@@ -12,6 +12,7 @@
 			$info = mysqli_fetch_all($connessione->query("select TTLImg, round from stanze where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0];
 			$_SESSION["TTL"] = $info[0];
 			$_SESSION["round"]= $info[1];
+			$_SESSION["punteggioPlayer"]=0;
 			header("location: studente.php");
 		}else{
 			header("location: studente.php");
