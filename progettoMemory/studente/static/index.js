@@ -210,7 +210,11 @@ $(document).ready(function(){
         //cambiato da Roberto
         console.log("punteggio: "+punteggio)
         $.post("../src/inviaGuest.php", {punteggio:punteggio}, function(dati){
+            if(dati[1]=="0"){
+                alert("risposta già inviata impossibile inviarne un altra.")
+            }
             console.log(dati)
+            
         })
         //fine cambio Roberto
         //epilessia

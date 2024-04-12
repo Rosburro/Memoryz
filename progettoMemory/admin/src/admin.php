@@ -24,9 +24,10 @@
 			if($_SESSION['n_round']>$_SESSION['numeroRound']){
 				echo "partita finita";
 				
-				//cose che servono per finire la partita (uguali al file finePartita.php
+				//cose che servono per finire la partita (uguali al file finePartita.php)
 				$_SESSION['partitaIniziata']=False;
 				$_SESSION['inizioRichieste']=false;
+				$_SESSION["roundInCorso"]=false;
 				$_SESSION['n_round']=0;
 				$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
 				$connessione->query("update stanze set inCorso=0, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
