@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,17 +28,26 @@
 			let t_start = ".$_GET['TTL']-$_GET['start'].";
 			let parola = '".$personaggio -> n_completo."';
 			let punteggioTot = $_SESSION[punteggioPlayer];
-			let path_immagine = '../../img/".($personaggio -> img) ."';
+			let path_immagine = 'http://sitinosetosobellino.altervista.org/progettoMemory/img/".($personaggio -> img) ."';
 			let lista_consigli= [";
 
+	//array suggerimenti
 	$suggerimenti = $personaggio->sugg;
-	
 	for($i=0;$i<count($suggerimenti)-1;$i++){
 		$script_js.="'".$suggerimenti[$i]."',";
 	}
-	$script_js.="'".$suggerimenti[count($suggerimenti)-1]."']; </script>";
+	$script_js.="'".$suggerimenti[count($suggerimenti)-1]."'];";
+	//array possibilki nomi validiZz
+	$guess = $personaggio -> guess;
+	$script_js.="
+				let guess = [";
+	for($i=0;$i<count($guess)-1;$i++){
+		$script_js.="'$guess[$i]',";
+	}
+	$script_js.="'".$guess[count($guess)-1]."']; </script>";
 
 	echo $script_js;
+	ob_end_flush();
 ?>
 
 

@@ -1,6 +1,9 @@
 let nascosto = "";//nome autore nascosto che con il tempo apparirà
 let nascosto_visualizza = "";//la stringa che va visualizzata
 
+//path immagine
+//const path_immagine = "../../img/Leopardi.jpg";
+
 const carattere = "-";//il carattere per indicare un lettera
 const spazio = " ";//il carattere per indicare uno stazio quindi non una lettera da inserire
 //const font_size = 100;//percentuale grandezza font
@@ -55,14 +58,17 @@ $(document).ready(function(){
 
     //fine parte aggiunta da Roberto
 
-    const body = document.body;
+
+    
+    time = time-0.1;//scalo perchè è lento
     parola = parola.toLocaleLowerCase();//nome autore
+    const body = document.body;
     $("<div id='progresso'>TEMPO RIMASTO</div>").appendTo("body");
     $("<div id='barra'>"+time+" secondi</div>").appendTo($("#progresso"));
     let width;
     //$("<div></div>").appendTo("body");
 
-    $("<img width='250px' id='img' src='"+path_immagine+"'>").appendTo("body");
+    $("<img width='75%' id='img' src='"+path_immagine+"'>").appendTo("body");
     $("<br>").appendTo("body");
     //clock
     let interval = setInterval(function(){
@@ -114,6 +120,8 @@ $(document).ready(function(){
         console.log(risposta);
         tap = true;
         End();
+
+
     });
 
     $("<button id='sugg'></button>").appendTo("body");
@@ -164,14 +172,9 @@ $(document).ready(function(){
         //console.log("t_rim: "+t_rimasto);
         //console.log(t_start)
         //console.log(`proporzione: ${((t_start*0.35)/time)*p_max}`);
-        let corretto = false;
+
         if (risposta == "") risposta = input.value.toLocaleLowerCase();
-        guess.forEach(element => {
-            element=element.toLocaleLowerCase();
-            if(element == risposta)corretto=true;
-        });
-        
-        if(corretto){
+        if(risposta == parola){
             $("#barra").css("background", '#5b9874');
             //calcolo punteggio
             if(t_rimasto >= cont/*riutilizzo cont per comodità*/){

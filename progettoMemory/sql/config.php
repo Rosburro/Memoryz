@@ -1,6 +1,6 @@
 <?php
 
-	$connessione = new mysqli('localhost', 'root', '');
+	$connessione = new mysqli('127.0.0.1', 'root', '');
 	if(mysqli_connect_errno()){
 		echo 'errore con il db';
 		exit();

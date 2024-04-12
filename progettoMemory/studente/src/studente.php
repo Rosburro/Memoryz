@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
 				
 				</form>";
 		}
-		
+	ob_end_flush();
 	?>
 
 	<script>
