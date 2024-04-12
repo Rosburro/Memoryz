@@ -3,13 +3,15 @@ console.log("scriptAdminPartitaIniziata");
 
 $(document).ready(function(){
 	
-	setInterval()
+	setInterval(funzionePunteggio, 1_000)
 	
 })
 
 
 function funzionePunteggio(){
-	
+	$("#tabellaAdmin").load("punteggioStudenti.php", function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
+		
+	})
 }
 
 function onClickterminaPartita(){
