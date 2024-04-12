@@ -1,3 +1,5 @@
+<?php ob_start();?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +16,17 @@
 		
 
 		<?php 
+		session_start();
 		//NB: comando da utilizzare per prendere tutte le immagini
 		// $memory = "../../memory.xml";
 		// $personaggi = simplexml_load_file($memory);
 		// $personaggi = $personaggi->xpath("./personaggio//*");
 		require '../../sql/config.php';
-			session_start();
+			if(isset($_GET['info']) && $_GET['info']!=""){
+				echo "<script>alert($_GET[info])</script>";
+			}
 
-			if($_SESSION['n_round']>$_SESSION['numeroRound']){
+			if($_SESSION['n_round']>$_SESSION['numeroRound'] || ($_SESSION['n_round']==$_SESSION['numeroRound'] && !$_SESSION["roundInCorso"])){
 				echo "partita finita";
 				
 				//cose che servono per finire la partita (uguali al file finePartita.php)
@@ -31,7 +36,7 @@
 				$_SESSION['n_round']=0;
 				$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
 				$connessione->query("update stanze set inCorso=0, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
-				echo "<button onclick='onClickterminaPartita()'>termina partita</button>";
+				echo "<br><button onclick='onClickterminaPartita()'>termina partita</button><br>";
 				//header("location: ./finePartita.php");
 			}
 
@@ -210,7 +215,9 @@
 
 
 			//FINE DEL PHP
-		?>
+
+		ob_end_flush();
+		 ?>
 		<table class='tabellaAdmin' id='tabellaAdmin'>
 			<tr>
 				<td class='partecipanti' id='partecipanti'>

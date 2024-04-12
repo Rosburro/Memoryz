@@ -1,24 +1,4 @@
-.zoom {
-    transition: transform .2s; 
-}
-
-.zoom:hover {
-    transform: scale(1.1); 
-}
-
-table td {
-    background-color: #ffcccc;
-}
-
-div.immagine {
-    position: fixed; 
-    bottom: 40px;
-    right: 40px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: transform .2s;
-}
-
+/* STILE CSS UNIVERSALE PER OGNI RISOLUZIONE */
 
 div.tabella {
    text-align:center;
@@ -29,3 +9,98 @@ input[type='submit']:hover {
     transform: scale(1.1);
 }
 
+body{
+    zoom: 75%;
+    background-color:#e4f5f8;
+}
+
+
+h1{
+    text-align: center; 
+    font-family: 'Rouge Script', cursive;
+    font-size:130px; 
+    font-weight:bold;
+    line-height:48px; 
+    margin:0 0 50px;
+    text-shadow:2px 2px 4px #76679e;
+    color: #c588bf;
+}
+
+
+p.autore{
+    text-align:center;
+    font-size:25px;
+    font-family: 'Droid Serif',serif;
+    letter-spacing: 2px;
+    font-style: italic;
+}
+
+.zoom {
+    transition: transform .2s; 
+}
+
+.zoom:hover {
+    transform: scale(1.1); 
+}
+
+.zoomBottone {
+    transition: transform .2s; 
+}
+
+.zoomBottone:hover {
+    transform: scale(1.75); 
+}
+
+
+table td {
+    background-color: rgb(255, 228, 225);
+}
+
+
+
+
+
+@media screen and (max-width: 1920px){  /* CSS PER RISOLUZIONI 1920x */
+
+    div.bottone_scelte {
+        position: fixed; 
+        bottom: 60px;
+        right: 50px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transform: scale(1.4);
+    }
+
+    div.bottone_tutte {
+        position: fixed; 
+        bottom: 295px;
+        right: 50px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transform: scale(1.4);
+    }
+
+}
+
+
+@media screen and (max-width: 1400px){  /* CSS PER RISOLUZIONI 1400x */
+
+    div.bottone_scelte {
+        position: fixed; 
+        bottom: 40px;
+        right: 30px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transform: scale(1.2);
+    }
+
+    div.bottone_tutte {
+        position: fixed; 
+        bottom: 220px;
+        right: 30px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transform: scale(1.2);
+    }
+
+}
