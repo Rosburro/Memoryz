@@ -22,7 +22,7 @@ $(document).ready(function(){
 				let ora = (appData.getHours()>12) ? appData.getHours()-12 : appData.getHours()
 
 				console.log(appDataRicevuta[0]+", "+ora+", "+appDataRicevuta[1]+", "+appData.getMinutes())
-				if(appDataRicevuta[0]==ora && appDataRicevuta[1]==appData.getMinutes() /*|| 1==1*/){//se la condizione non e` soddsfatta allora non si puo` partecipare al round
+				if(appDataRicevuta[0]==ora && appDataRicevuta[1]==appData.getMinutes() || 1==1){//se la condizione non e` soddsfatta allora non si puo` partecipare al round
 					
 					let appSec = Number(dati[1].split(":")[2])//tempol preso dalla query (tempoo inizio round)
 					let differenzaStart= ttl-(appData.getSeconds()-appSec)

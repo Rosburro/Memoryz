@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 function funzione_interval(){
 	console.log("entrato dentro l'interval")
-	$("#partecipanti").load("StudentiPartecipanti.php", function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
+	$("#tabellaAdmin").load("StudentiPartecipanti.php", function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
 		
 	})
 }
