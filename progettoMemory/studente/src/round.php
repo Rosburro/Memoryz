@@ -23,9 +23,11 @@
 
 	//echo "il personaggio si chiama: ".$personaggio -> n_completo;
 	//echo "<script>alert('ciao')</script>";
-	$script_js = "<script style='visibility: hidden;display:none;'>
+    //echo "asdsadasdasdasdasd";
+    echo $_GET['TTL'];
+    $script_js = "<script style='visibility: hidden;display:none;'>
 			let time = $_GET[start];
-			let t_start = ".$_GET['TTL']-$_GET['start'].";
+			let t_start = ".($_GET['TTL']-$_GET['start']).";
 			let parola = '".$personaggio -> n_completo."';
 			let punteggioTot = $_SESSION[punteggioPlayer];
 			let path_immagine = 'http://sitinosetosobellino.altervista.org/progettoMemory/img/".($personaggio -> img) ."';

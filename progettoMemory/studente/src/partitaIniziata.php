@@ -4,9 +4,14 @@
         require "../../sql/config.php";
         //frtvhre il vontrnuto efare tutt
         //controlla se la partita e` inizizata
-        $inCorso = mysqli_fetch_all($connessione-> query("select inCorso from stanze where nome_stanza='$_GET[nome_stanza]'"))[0][0];
+        $inCorso = mysqli_fetch_all($connessione-> query("select inCorso, ingAperto from stanze where nome_stanza='$_GET[nome_stanza]'"))[0];
         //print_r($inCorso);
-        
+        if($inCorso[0]==0 && $inCorso[1]==0){//se la stanza e` chiusa allora avvisa il client di tornare alla pagina iniziale
+            //echo "<script></script>"
+            echo "fine";
+            exit();
+        }
+        $inCorso=$inCorso[0];
         //controllo se il round e` iniziato
         //echo 'in corso = '.$inCorso[0][0];
         if($inCorso==1){

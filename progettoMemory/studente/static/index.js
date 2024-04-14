@@ -39,6 +39,16 @@ const acapo = document.createElement("br");
 
 
 $(document).ready(function(){
+    console.log(
+                `cose passate:
+                time: ${time},
+                t_start: ${t_start},
+                parola: ${parola},
+                punteggio tot: ${punteggioTot}
+                path_imm: ${path_immagine},
+                lista consigli: ${lista_consigli}, 
+                guess: ${guess}`
+            )
 
     //parte aggiunta da Roberto
 
@@ -163,7 +173,7 @@ $(document).ready(function(){
         let t_rimasto = time - t_start;
         //console.log("t_rim: "+t_rimasto);
         //console.log(t_start)
-        //console.log(`proporzione: ${((t_start*0.35)/time)*p_max}`);
+        //console.log(proporzione: ${((t_start*0.35)/time)*p_max});
         let corretto = false;
         if (risposta == "") risposta = input.value.toLocaleLowerCase();
         guess.forEach(element => {
@@ -176,20 +186,21 @@ $(document).ready(function(){
             //calcolo punteggio
             if(t_rimasto >= cont/*riutilizzo cont per comodità*/){
                 //buona fortuna nel cercare di capirci qualcosa
-                punteggio = p_max - (((t_start*0.35)/time) * p_max) - (sugg_partita - sugg_rim)*30;
+                punteggio = p_max - (((t_start*0.35)/time) * p_max);
             }else{
-                punteggio = p_max - ((t_start/time) * p_max) - (sugg_partita - sugg_rim)*30;
+                punteggio = p_max - ((t_start/time) * p_max);
             }
             if(tap)punteggio+=15;
             if(punteggio>100)punteggio=100;
+            if(sugg_rim<sugg_partita){punteggio-=5; sugg_partita--;}
             
             body.style="background-color:#7bb35d;";
             //punteggio = punteggio.toFixed(2);
         }
         else {
-            if(tap==true)punteggio=-5;
+            if(tap==true)punteggio=0;
             if(sugg_rim<sugg_partita)punteggio=-5;
-            if(risposta == '')punteggio=-5;
+            if(risposta == '')punteggio=0;
 
             sugg_partita=sugg_rim;
             body.style="background-color:#b5423c;";
@@ -199,8 +210,8 @@ $(document).ready(function(){
         v.innerHTML = parola.toLocaleUpperCase();
 
         punteggioTot += punteggio;
-        console.log(`Punteggio Round: ${punteggio.toFixed(2)}`);
-        console.log(`Punteggio Sessione: ${punteggioTot.toFixed(2)}`);
+       // console.log(Punteggio Round: ${punteggio.toFixed(2)});
+        //console.log(Punteggio Sessione: ${punteggioTot.toFixed(2)});
 
         $("#Ptot").html("Punteggio Totale: "+punteggioTot.toFixed(2));
         $("<label id='Pround'>").html("Punteggio round: "+punteggio.toFixed(2)).css("bottom", "92%").appendTo("body");

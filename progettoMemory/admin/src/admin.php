@@ -14,7 +14,7 @@
 <body>
 		<!-- TODO cambiare tutta la gestione di file in db -->
 		
-
+		
 		<?php 
 		session_start();
 		//NB: comando da utilizzare per prendere tutte le immagini
@@ -62,17 +62,24 @@
 			//fine cosa immagini
 
 			if(isset($_GET['invioImpostazioni'])){
-				$ttl = intval($_GET['TTLFoto']);
+				$ttl =$_GET['TTLFoto'];
 				$nRound=$_GET['nRound'];
 				$stanza = $_GET['titoloStanza'];
+				$info_errori="";
 				//echo "entrato nel secondo if".!isset($_SESSION['TTLFoto']);
 				if($ttl>0) {
 					//echo "entrato nel set del session";
+					
 					$_SESSION['TTLFoto']=$ttl;
+				}else if($ttl!=""){
+					$info_errori.="non e` possibile settare un tempo per ogni immagine inferiore o uguale a 0;";
+					
 				}
 
 				if($nRound>0){
 					$_SESSION['numeroRound']=$nRound;
+				}else if($nRound!=""){
+					$info_errori.="non e` possibile inserire un numero di round inferiore o uguale a 0";
 				}
 				
 				$controllo_nome_stanza = controllo_stanza_esistente($stanza);
@@ -85,7 +92,7 @@
 					aggiungi_stanza($stanza);
 				}
 
-				header("Location: ./admin.php");
+				header("Location: ./admin.php". (($info_errori!="") ? "?info=\"$info_errori\"" : ""));
 			}
 
 			if(isset($_SESSION['partitaIniziata']) && $_SESSION['partitaIniziata']==True){//partita iniziata
@@ -123,9 +130,11 @@
 			
 			echo "<table id='tabellavisualizzazione'></table>";
 
+			
 
-
-
+			function alert_info($stringa){
+				echo "<script>alert('$stringa')</script>";
+			}
 
 			function scrivi_form_impostazioni(){
 				echo "
@@ -195,7 +204,7 @@
 
 			function setta_immagini($immagini){
 				$GLOBALS['connessione']->query("delete from img_stanza where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nell'eliminazione delle immagini della stanza");
-				echo $immagini;
+				//print_r($immagini);//debug
 				if($immagini=="all"){
 					
 					$personaggi = count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio"));

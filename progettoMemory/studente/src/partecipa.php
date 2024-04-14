@@ -1,8 +1,10 @@
 <?php 
+	ob_start();
 	session_start();
 	require "../../sql/config.php";
 	if(isset($_GET['inviaForm'])){
 		//TODO sistemare il nome a modinjo o ci sono casini, (non case sensitive)
+		echo  $_GET["stanzaSelezionata"];
 		if(controllo_nome_partecipante($_GET['nomePartecipante'], $_GET["stanzaSelezionata"])){
 			//echo "entrato qui ppppp";
 			$connessione-> query("insert into partecipanti (username, nome_stanza) values('$_GET[nomePartecipante]', '$_GET[stanzaSelezionata]')")
@@ -48,5 +50,5 @@
 		if($risultato[0]==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 
 		else return true;
 	}
-
+	ob_end_flush();
 ?>

@@ -3,6 +3,10 @@ $(document).ready(function(){
 	setInterval(function(){//far si che esista una variabile booleana che se falsa non fa partire l'if
 		console.log('entrato')
 		$("#partita").load("partitaIniziata.php?nome_stanza="+stanza, function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
+			if(dati=="fine"){//se la stanza e` chiusa
+				onClickEsciDallaStanza()
+			}
+			
 			console.log(dati.indexOf(";"))
 			//non la cosa migliore del mondo ma funzia
 			//si potrebbe cambiare con un get o un post magari
@@ -12,16 +16,16 @@ $(document).ready(function(){
 				console.log(dati)
 				// funzia
 				let ttl =dati[2]
-				let appData =new Date()
+				let appData =new Date()//tempo corrente
 				let appDataRicevuta = dati[1].split(":")
 				//uno mi da l'ora in am/pm e l'altro in 24h 
 				let ora = (appData.getHours()>12) ? appData.getHours()-12 : appData.getHours()
 
 				console.log(appDataRicevuta[0]+", "+ora+", "+appDataRicevuta[1]+", "+appData.getMinutes())
-				if(appDataRicevuta[0]==ora && appDataRicevuta[1]==appData.getMinutes() /*|| 1==1*/){
+				if(appDataRicevuta[0]==ora && appDataRicevuta[1]==appData.getMinutes() /*|| 1==1*/){//se la condizione non e` soddsfatta allora non si puo` partecipare al round
 					
-					let appSec = Number(dati[1].split(":")[2])
-					let differenzaStart= ttl-(appSec-appData.getSeconds())
+					let appSec = Number(dati[1].split(":")[2])//tempol preso dalla query (tempoo inizio round)
+					let differenzaStart= ttl-(appData.getSeconds()-appSec)
 
 					console.log("secondini1: "+appSec)
 					console.log("secondini2: "+appData.getSeconds())
