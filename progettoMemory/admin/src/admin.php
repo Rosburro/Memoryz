@@ -10,6 +10,7 @@
     <meta Http-Equiv='Expires' Content='0'>
 	<title>profe</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../static/admin_css.css">
 </head>
 <body>
 		<!-- TODO cambiare tutta la gestione di file in db -->
@@ -128,7 +129,7 @@
 				echo "<script src='../static/scriptAdminVisualizzaStudenti.js'></script>";
 			}
 			
-			echo "<table id='tabellavisualizzazione'></table>";
+			//echo "<table id='tabellavisualizzazione'></table>";
 
 			
 
@@ -227,17 +228,17 @@
 
 		ob_end_flush();
 		 ?>
-		<table class='tabellaAdmin' id='tabellaAdmin'>
-			<tr>
-				<td class='partecipanti' id='partecipanti'>
-					
-				</td>
-				<td class='score' id='score'>
-					
-				</td>
-			</tr>
-		</table>
-
+		<div id="contenitoreTabEImg" class="contenitoreTab">
+			<table class='tabellaAdmin' id='tabellaAdmin'>
+				
+			</table>
+			<div class="divImgDaIndovinare">
+				<p id="nomeTizio" class="nomeTizio"></p>
+				<img id="contenitoreImg" class="contenitoreImg" height="300px">
+			</div>
+			
+			
+		</div>
 
 			<!-- TODO: far si che il js e il css vengano spostati in un file separato -->
 		<script type="text/javascript">

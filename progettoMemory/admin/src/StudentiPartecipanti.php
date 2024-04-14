@@ -9,10 +9,10 @@
   <li>Milk</li>
 </ol>  */
 
-	echo "<ol class='listaPartecipanti'>";
+	echo "<tr><td><ol class='listaPartecipanti'>";
 	foreach($result as $riga){
 		echo "<li class='elementoListaPartecipanti'>$riga[username]</li>";
 	}
-	echo "</ol>";
+	echo "</ol></td></tr>";
 
  ?>
