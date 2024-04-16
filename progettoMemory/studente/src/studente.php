@@ -33,7 +33,7 @@
 						
 					</select>
 					<input type='text' name='nomePartecipante' id='nome'>
-					<input type='submit' name='inviaForm' value='porco' id='invia'>
+					<input type='submit' name='inviaForm' value='Entra' id='invia'>
 				
 				</form>";
 		}
