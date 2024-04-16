@@ -1,0 +1,53 @@
+@import url('https://fonts.cdnfonts.com/css/vegan-style-personal-use');
+@import url('https://fonts.cdnfonts.com/css/aaa-bzh');
+@import url('https://fonts.cdnfonts.com/css/ogdred-weary');
+
+body{
+    background-color: #e4f5f8;
+    text-align: center;
+}
+img{
+    z-index: -1;
+    position: absolute;
+    right: 0%;
+    top:-10%;
+}
+
+#titolo{
+    font-family: 'Vegan Style Personal Use', sans-serif;
+    letter-spacing: .3ch;
+    color: #453a73;
+    text-shadow: 5px 5px #a39eb5;
+    font-size: 32pt;
+}
+label{
+    font-family: 'OgdredWeary', sans-serif;
+    letter-spacing: .2ch;
+    color: #453a73;
+    font-size: 22pt;
+}
+
+#lato-dx{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 94%;
+    font-family: 'Aaa_BZH', sans-serif;
+    width: 1ch;
+    word-wrap: break-word;
+    font-size:  250%;
+    color: #453a73;
+}
+#lato-sx{
+    color: #453a73;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Aaa_BZH', sans-serif;
+    width: 1ch;
+    word-wrap: break-word;
+    font-size: 250%;
+}

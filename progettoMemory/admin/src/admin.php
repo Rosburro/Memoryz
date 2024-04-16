@@ -11,9 +11,13 @@
 	<title>profe</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../static/admin_css.css">
+	<link rel="stylesheet" href="../static/css_admin.css">
 </head>
-<body>
-		<!-- TODO cambiare tutta la gestione di file in db -->
+<body style='zoom:110%' >
+		<img src="../../img/admin.jpg">
+		<h1 id="titolo">MEMORI</h1>
+		<div id="lato-dx">aaaaaaaaaaa</div>
+		<div id="lato-sx">aaaaaaaaaaa</div>
 		
 		
 		<?php 
@@ -73,18 +77,21 @@
 					
 					$_SESSION['TTLFoto']=$ttl;
 				}else if($ttl!=""){
-					$info_errori.="non e` possibile settare un tempo per ogni immagine inferiore o uguale a 0;";
+					$info_errori.="non e` possibile settare un tempo per ogni immagine inferiore o uguale a 0; ";
 					
 				}
 
 				if($nRound>0){
 					$_SESSION['numeroRound']=$nRound;
 				}else if($nRound!=""){
-					$info_errori.="non e` possibile inserire un numero di round inferiore o uguale a 0";
+					$info_errori.="non e` possibile inserire un numero di round inferiore o uguale a 0; ";
 				}
 				
 				$controllo_nome_stanza = controllo_stanza_esistente($stanza);
-				
+				if(!$controllo_nome_stanza){
+					$info_errori.="il nome della stanza inserito non e' disponibile";
+				}
+				//echo "controllo nome: $controllo_nome_stanza";
 				if($_SESSION["nomeStanza"]!="None" && $controllo_nome_stanza){
 					rimuovi_stanza($_SESSION['nomeStanza']);
 				}
@@ -156,16 +163,19 @@
 			}
 
 			function visualizza_impostazioni(){
-				echo "tempo settato: ".$_SESSION['TTLFoto']."<br>";
-				echo "round settatio: ".$_SESSION['numeroRound']."<br>";
-				echo "nome della stanza: ".$_SESSION['nomeStanza']."<br>";
+				if(!$_SESSION['partitaIniziata'] && !$_SESSION['inizioRichieste']){
+					echo "<form action='eliminaStanza.php'><input type='submit' value='Elimina stanza'></form><br>";// bottone che serve ad eliminare la stranza
+				}
+				echo "Tempo settato per immagine: ".$_SESSION['TTLFoto']."<br>";
+				echo "Numero round: ".$_SESSION['numeroRound']."<br>";
+				echo "Nome della stanza: ".$_SESSION['nomeStanza']."<br>";
 				$img_sel = "";
 				if($_SESSION['immaginiSelezionate']=="all"){
 					$img_sel="all";
 				}else{
 					$img_sel = implode(",",$_SESSION['immaginiSelezionate']);
 				}
-				echo "immagini selezionate: ".$img_sel."<br>";
+				echo "Immagini selezionate: ".$img_sel."<br>";
 			}
 
 			function controllo_variabili_sessione(){//default
@@ -179,7 +189,7 @@
 
 			function aggiungi_stanza($nome_stanza){//aggiunge il titolo della stanza al file
 				//TODO far si che vengano controrllare le stringhe per prevenire l'sql injection 
-				$GLOBALS['connessione']->query("insert into stanze (nome_stanza,TTLImg, round) values('$_SESSION[nomeStanza]', '$_SESSION[TTLFoto]', '$_SESSION[numeroRound]')")
+				$GLOBALS['connessione']->query("insert into stanze (nome_stanza) values('$_SESSION[nomeStanza]')")
 				or die("errore nell'aggiunta della stanza");
 				//TODO testare questa parte di codice
 				setta_immagini($_SESSION["immaginiSelezionate"]);
@@ -197,8 +207,9 @@
 
 			function controllo_stanza_esistente($nome_stanza){//controllo se è valido il titolo della finestra
 				if($nome_stanza=="" || str_replace(" ","",$nome_stanza)=="" || $nome_stanza=="None")return false;
-				$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente' from stanze where nome_stanza='$nome_stanza'"))[0];
-				
+				echo "<br>nome della stanza: $nome_stanza";
+				$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente'  from stanze where nome_stanza='$nome_stanza'"))[0];
+				//echo "<br>nome stanza: $risultato[1]";
 				if($risultato[0]==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 
 				else return true;
 			}
