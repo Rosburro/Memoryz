@@ -24,6 +24,7 @@ let punteggio = 0;//punteggio del round
 let tap = false;//se è stato cliccato il conferma
 const p_max = 100;//punteggio massiomo in un round
 const acapo = document.createElement("br");
+let reload = false;
 
 //punteggio massimo: 100p
 //consiglio -30p solo se è nella prima meta del tempo
@@ -84,6 +85,12 @@ $(document).ready(function(){
             if(width<=0)width=100;
             let show = (time-t_start).toFixed(1);
             if(show<0)show=0;
+			if(t_start<=(time/2)){
+                //buona fortuna nel cercare di capirci qualcosa
+                console.log( p_max - ((t_start/(time/2))*35));
+            }else{
+                console.log( p_max * 0.65 - (((t_start/(time/2))-1)*65));
+            }
 
             //console.log(`cont: ${cont}`);
             if(t_start >= cont){Rivela();cont++;}
@@ -175,29 +182,30 @@ $(document).ready(function(){
         //console.log(t_start)
         //console.log(proporzione: ${((t_start*0.35)/time)*p_max});
         let corretto = false;
-        if (risposta == "") risposta = input.value.toLocaleLowerCase();
+        if (risposta == "" ) risposta = input.value.toLocaleLowerCase();
         guess.forEach(element => {
             element=element.toLocaleLowerCase();
             if(element == risposta)corretto=true;
         });
         
-        if(corretto){
+        if(corretto && !reload){
             $("#barra").css("background", '#5b9874');
             //calcolo punteggio
-            if(t_rimasto >= cont/*riutilizzo cont per comodità*/){
+            if(t_start<=(time/2)){
                 //buona fortuna nel cercare di capirci qualcosa
-                punteggio = p_max - (((t_start*0.35)/time) * p_max);
+                punteggio = p_max - ((t_start/(time/2))*35);
             }else{
-                punteggio = p_max - ((t_start/time) * p_max);
+                punteggio = p_max * 0.65 - (((t_start/(time/2))-1)*65);
             }
             if(tap)punteggio+=15;
             if(punteggio>100)punteggio=100;
             if(sugg_rim<sugg_partita){punteggio-=5; sugg_partita--;}
             
             body.style="background-color:#7bb35d;";
+			reload = true;
             //punteggio = punteggio.toFixed(2);
         }
-        else {
+        else if(!reload) {
             if(tap==true)punteggio=0;
             if(sugg_rim<sugg_partita)punteggio=-5;
             if(risposta == '')punteggio=0;
@@ -205,6 +213,7 @@ $(document).ready(function(){
             sugg_partita=sugg_rim;
             body.style="background-color:#b5423c;";
             //punteggio = punteggio.toFixed(2);
+			reload = true;
         }
 
         v.innerHTML = parola.toLocaleUpperCase();
