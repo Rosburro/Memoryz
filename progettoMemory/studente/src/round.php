@@ -16,7 +16,8 @@
 <?php
 	//echo $_GET['TTL'].", ".$_GET['img'].", ".$_GET["start"];
 	session_start();
-	$immagine = $_GET['img']+0;
+	require "../../sql/config.php";
+	$immagine = mysqli_fetch_all($connessione ->query("select img_round from round where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
 	$personaggio = simplexml_load_file("../../memory.xml")->xpath("./personaggio")[$immagine];
 	//echo $personaggio -> img;
 	//print_r($personaggio);
@@ -24,10 +25,11 @@
 	//echo "il personaggio si chiama: ".$personaggio -> n_completo;
 	//echo "<script>alert('ciao')</script>";
     //echo "asdsadasdasdasdasd";
-    echo $_GET['TTL'];
-    $script_js = "<script style='visibility: hidden;display:none;'>
-			let time = $_GET[start];
-			let t_start = ".($_GET['TTL']-$_GET['start']).";
+	$tempi = mysqli_fetch_all($connessione -> query("select TTLImg, (utc_time()-inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0];
+    echo $tempi[1];
+	$script_js = "<script style='visibility: hidden;display:none;'>
+			let time = $tempi[0];
+			let t_start = ".$tempi[1].";
 			let parola = '".$personaggio -> n_completo."';
 			let punteggioTot = $_SESSION[punteggioPlayer];
 			let path_immagine = 'http://sitinosetosobellino.altervista.org/progettoMemory/img/".($personaggio -> img) ."';

@@ -16,7 +16,7 @@ body{
 }
 
 p {
-    font-size: large;
+    font-size:small;
     text-align: center;
     border-radius: 5px;
     border: 4px solid #87cefa;
@@ -84,8 +84,9 @@ label{
     /*position: fixed;
     margin-top: -10%;
     margin-left: 70%;*/
-    bottom: 45px;
-    right: 150px;
+    position: absolute;
+    bottom: 75vw;
+    right: 40vw;
     align-items: center;
     height: 59px;
     width: 61px;

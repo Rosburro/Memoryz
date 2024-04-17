@@ -1,10 +1,10 @@
 let scelte = [];
 
 function cambiaSfondo(img) {
-    if (window.getComputedStyle(img.parentNode).backgroundColor === 'rgb(255, 204, 204)') {
-        img.parentNode.style.backgroundColor = 'rgb(135, 247, 23)';
+    if (window.getComputedStyle(img.parentNode).backgroundColor === 'rgb(197, 136, 191)') {
+        img.parentNode.style.backgroundColor = 'rgb(255, 228, 225)';
     } else {
-        img.parentNode.style.backgroundColor = 'rgb(255, 204, 204)';
+        img.parentNode.style.backgroundColor = 'rgb(197, 136, 191)';
     }
 }
 
