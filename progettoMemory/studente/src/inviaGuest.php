@@ -1,5 +1,7 @@
 <?php
     require "roundInCorso.php";//mette a disposizione tutto ciò che serve
+    
+    //todo vedere se c'è qualche problema qui
     try {
         if($inCorso!=0){
             $inviato =  mysqli_fetch_all($connessione->query("select inviato from partecipanti where username='$_SESSION[nomePartecipante]' and nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];

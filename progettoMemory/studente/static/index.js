@@ -56,9 +56,13 @@ $(document).ready(function(){
     setInterval(verificaRoundInCorso, 1_000)
 
     function verificaRoundInCorso(){
+        
         $.post("../src/roundInCorso.php", function(data){
+            console.log("data: "+data)
             if(data=="0"){
                 console.log("entrato")
+                End()
+            }else if(data=="-1"){
                 window.location.href="../src/studente.php"
             }
         })
@@ -85,12 +89,12 @@ $(document).ready(function(){
             if(width<=0)width=100;
             let show = (time-t_start).toFixed(1);
             if(show<0)show=0;
-			if(t_start<=(time/2)){
+			/*if(t_start<=(time/2)){
                 //buona fortuna nel cercare di capirci qualcosa
                 console.log( p_max - ((t_start/(time/2))*35));
             }else{
                 console.log( p_max * 0.65 - (((t_start/(time/2))-1)*65));
-            }
+            }*/
 
             //console.log(`cont: ${cont}`);
             if(t_start >= cont){Rivela();cont++;}
@@ -117,8 +121,11 @@ $(document).ready(function(){
 
     //creazione della casella di testo
     let input = document.createElement("input");
-    input.type="text";
+    input.type="search";
     input.id="input";
+    input.autocomplete="off";
+    //input.readOnly="true";
+    //$("#input").on("onclick", function(){input.readOnly="false"});
     body.appendChild(input);
     body.appendChild(acapo);
 
@@ -154,7 +161,7 @@ $(document).ready(function(){
             "position":"absolute",
             "max-width":"50%",
             "text-align":"center",
-            "bottom":25+(id*3)+"%",
+            "bottom":40+(id*3)+"%",
             "margin-left": "auto",
             "margin-right": "auto",
             "left": 0,
@@ -185,7 +192,7 @@ $(document).ready(function(){
         if (risposta == "" ) risposta = input.value.toLocaleLowerCase();
         guess.forEach(element => {
             element=element.toLocaleLowerCase();
-            if(element == risposta)corretto=true;
+            if(element.replace(" ", "") == risposta.replace(" ", ""))corretto=true;
         });
         
         if(corretto && !reload){
@@ -224,7 +231,9 @@ $(document).ready(function(){
 
         $("#Ptot").html("Punteggio Totale: "+punteggioTot.toFixed(2));
         $("<label id='Pround'>").html("Punteggio round: "+punteggio.toFixed(2)).css("bottom", "92%").appendTo("body");
+        
         //cambiato da Roberto
+        
         console.log("punteggio: "+punteggio)
         $.post("../src/inviaGuest.php", {punteggio:punteggio}, function(dati){
             if(dati[1]=="0"){
