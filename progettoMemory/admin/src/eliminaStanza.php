@@ -11,6 +11,6 @@
     $_SESSION['nomeStanza']='None';
     header("location: ./admin.php");
     
-
+    session_destroy();
     ob_end_flush();
 ?>

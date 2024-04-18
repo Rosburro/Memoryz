@@ -13,9 +13,13 @@ const spazio = " ";//il carattere per indicare uno stazio quindi non una lettera
 let min_start = new Date().getMinutes();//settiamo i minuti per vedere lo strat
 let sec_start = new Date().getSeconds();//settiamo i secondi per vedere lo strat*/
 let risposta = ""; //variabile dove verrà salvata la risposta dopo il click conferma (o se scade il tempo)
-const sugg_max = 3;//numero sugg decisi dalla prof DA NON CAMBIARE DURANTE LA PARTITA
-let sugg_partita = sugg_max;//numero sugg ad inizio partita (non so se unirlo a sugg_max) [VIENE CAMBIATA A FINE ROUND]
-let sugg_rim = sugg_max;//suggerimenti rimaneti in tutta la partita
+//settate nel php round 
+//const sugg_max = 3;//numero sugg decisi dalla prof DA NON CAMBIARE DURANTE LA PARTITA
+//let sugg_partita = sugg_max;//numero sugg ad inizio partita (non so se unirlo a sugg_max) [VIENE CAMBIATA A FINE ROUND]
+//let sugg_rim = sugg_max;//suggerimenti rimaneti in tutta la partita
+
+
+
 //lista creata dal php
 //let lista_consigli = ["cons1cons1cons1cons12422","cons2","cons3"];//lista consigli per immagine ( da prendere in input dal file di Betters)
 let cont = time/2; // contatore per quando le lettere che appaiono

@@ -17,7 +17,8 @@
 								TTLImg int default 15,
 								round int default 0,
 								ingAperto  TINYINT(1) default 0,
-								inCorso  TINYINT(1) default 0
+								inCorso  TINYINT(1) default 0,
+								max_suggerimenti int default 3
 							)") or die("errore nella creazione della tabella stanze");
 	
 	//far si che ci sia una variabile che controlla se lo studente ha inviato o meno la risposta
@@ -27,6 +28,7 @@
 								nome_stanza varchar(20) references stanze(nome_stanza) on delete cascade on update cascade,
 								punteggio int default 0,
 								inviato tinyint(1) default 0,
+								suggerimenti int default 0,
 								primary key(username, nome_stanza) 
 							)") or die("errore nella creazione della tabella partecipanti");
 

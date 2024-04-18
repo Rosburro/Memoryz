@@ -18,6 +18,7 @@
 	session_start();
 	require "../../sql/config.php";
 	$immagine = mysqli_fetch_all($connessione ->query("select img_round from round where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+
 	$personaggio = simplexml_load_file("../../memory.xml")->xpath("./personaggio")[$immagine];
 	//echo $personaggio -> img;
 	//print_r($personaggio);
@@ -26,9 +27,15 @@
 	//echo "<script>alert('ciao')</script>";
     //echo "asdsadasdasdasdasd";
 	$tempi = mysqli_fetch_all($connessione -> query("select TTLImg, (utc_time()-inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0];
-    echo $tempi[1];
+	$sugg_max = mysqli_fetch_all($connessione->query("select max_suggerimenti from stanze where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+    
+    $sugg_rimasti = $sugg_max-mysqli_fetch_all($connessione->query("select suggerimenti from partecipanti where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+
 	$script_js = "<script style='visibility: hidden;display:none;'>
 			let time = $tempi[0];
+			const sugg_max = $sugg_max;
+			let sugg_partita = sugg_max;
+			let sugg_rim = $sugg_rimasti;
 			let t_start = ".$tempi[1].";
 			let parola = '".$personaggio -> n_completo."';
 			let punteggioTot = $_SESSION[punteggioPlayer];
@@ -36,12 +43,18 @@
 			let lista_consigli= [";
 
 	//array suggerimenti
-	$suggerimenti = $personaggio->sugg;
-	for($i=0;$i<count($suggerimenti)-1;$i++){
-		$script_js.="'".$suggerimenti[$i]."',";
+	if($sugg_max!=0){
+		$suggerimenti = $personaggio->sugg;
+		for($i=0;$i<count($suggerimenti)-1 && $i<$sugg_max-1;$i++){
+			$script_js.="'".$suggerimenti[$i]."',";
+		}
+		$script_js.="'".$suggerimenti[count($suggerimenti)-1]."'];";
+	}else{
+		$script_js.="];";
 	}
-	$script_js.="'".$suggerimenti[count($suggerimenti)-1]."'];";
+	
 	//array possibilki nomi validiZz
+	
 	$guess = $personaggio -> guess;
 	$script_js.="
 				let guess = [";
@@ -50,6 +63,8 @@
 	}
 	$script_js.="'".$guess[count($guess)-1]."']; </script>";
 
+	
+	
 	echo $script_js;
 	ob_end_flush();
 ?>

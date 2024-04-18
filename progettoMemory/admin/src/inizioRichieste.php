@@ -13,7 +13,7 @@
 	require "../../sql/config.php";
 	$_SESSION['inizioRichieste']=True;
 	$_SESSION['partitaIniziata']=false; 
-	$connessione->query("update stanze set inCorso=0, ingAperto=1, TTLImg=$_SESSION[TTLFoto], round=$_SESSION[numeroRound] where nome_stanza='$_SESSION[nomeStanza]'") 
+	$connessione->query("update stanze set inCorso=0, ingAperto=1, TTLImg=$_SESSION[TTLFoto], round=$_SESSION[numeroRound],max_suggerimenti=$_SESSION[suggerimenti]   where nome_stanza='$_SESSION[nomeStanza]'") 
 	or die("errore nel far iniziare le entrate");
 	header('Location: ./admin.php');
 	ob_end_flush();
