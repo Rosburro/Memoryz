@@ -27,6 +27,7 @@
 		// $personaggi = simplexml_load_file($memory);
 		// $personaggi = $personaggi->xpath("./personaggio//*");
 		require '../../sql/config.php';
+			controllo_variabili_sessione();
 			if(isset($_GET['info']) && $_GET['info']!=""){
 				echo "<script>alert($_GET[info])</script>";
 			}
@@ -49,7 +50,7 @@
 
 			//cosa per le immagini
 			
-			controllo_variabili_sessione();
+			
 
 			if(isset($_GET['scelte'])){
 				if($_GET['scelte']=="all"){
@@ -66,10 +67,11 @@
 			
 			//fine cosa immagini
 
-			if(isset($_GET['invioImpostazioni'])){
-				$ttl =$_GET['TTLFoto'];
+			if(isset($_GET['invioImpostazioni'])){// correggete l'sql injection
+				$ttl =   $_GET['TTLFoto'];
 				$nRound=$_GET['nRound'];
 				$stanza = $_GET['titoloStanza'];
+				$suggerimenti = $_GET['suggerimenti'];
 				$info_errori="";
 				//echo "entrato nel secondo if".!isset($_SESSION['TTLFoto']);
 				if($ttl>0) {
@@ -81,24 +83,33 @@
 					
 				}
 
+				if ($suggerimenti>=0 && $suggerimenti<=4){
+					$_SESSION['suggerimenti']=$suggerimenti;
+				}
+
 				if($nRound>0){
 					$_SESSION['numeroRound']=$nRound;
 				}else if($nRound!=""){
 					$info_errori.="non e` possibile inserire un numero di round inferiore o uguale a 0; ";
 				}
 				
-				$controllo_nome_stanza = controllo_stanza_esistente($stanza);
-				if(!$controllo_nome_stanza){
+				
+				if($stanza!="" && str_replace(" ","",$stanza)!=""){
+					//echo "entrato"; 
+					$controllo_nome_stanza = controllo_stanza_esistente($stanza);
+					if(!$controllo_nome_stanza){
 					$info_errori.="il nome della stanza inserito non e' disponibile";
+					}
+					//echo "controllo nome: $controllo_nome_stanza";
+					if($_SESSION["nomeStanza"]!="None" && $controllo_nome_stanza){
+						rimuovi_stanza($_SESSION['nomeStanza']);
+					}
+					if($controllo_nome_stanza){
+						$_SESSION['nomeStanza']=$stanza;
+						aggiungi_stanza($stanza);
+					}
 				}
-				//echo "controllo nome: $controllo_nome_stanza";
-				if($_SESSION["nomeStanza"]!="None" && $controllo_nome_stanza){
-					rimuovi_stanza($_SESSION['nomeStanza']);
-				}
-				if($controllo_nome_stanza){
-					$_SESSION['nomeStanza']=$stanza;
-					aggiungi_stanza($stanza);
-				}
+				
 
 				header("Location: ./admin.php". (($info_errori!="") ? "?info=\"$info_errori\"" : ""));
 			}
@@ -150,7 +161,9 @@
 					<form action='admin.php'>
 						<label for='ttlfoto'>immettere il tempo che lo studente ha per ogni foto</label>
 						<input type='number' id='ttlfoto' name='TTLFoto'><br>
-						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'><br>
+						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'>
+						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+						<br>
 						<label for='titoloStanza'>immettere il nome della stanza</label>
 						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>
 						<input type='submit' value='invio impostazioni' name='invioImpostazioni'>
@@ -168,6 +181,7 @@
 				}
 				echo "Tempo settato per immagine: ".$_SESSION['TTLFoto']."<br>";
 				echo "Numero round: ".$_SESSION['numeroRound']."<br>";
+				echo "Suggerimenti per round: ".$_SESSION['suggerimenti']."<br>";
 				echo "Nome della stanza: ".$_SESSION['nomeStanza']."<br>";
 				$img_sel = "";
 				if($_SESSION['immaginiSelezionate']=="all"){
@@ -185,6 +199,9 @@
 				if(!isset($_SESSION['numeroRound']))$_SESSION['numeroRound']=5;
 				if(!isset($_SESSION["roundInCorso"]))$_SESSION["roundInCorso"]=false;
 				if(!isset($_SESSION['n_round']))$_SESSION['n_round']=1;
+				if(!isset($_SESSION['inizioRichieste']))$_SESSION['inizioRichieste']=false;
+				if(!isset($_SESSION['partitaIniziata']))$_SESSION['partitaIniziata']=false;
+				if(!isset($_SESSION['suggerimenti']))$_SESSION['suggerimenti']=3;
 			}
 
 			function aggiungi_stanza($nome_stanza){//aggiunge il titolo della stanza al file
@@ -206,7 +223,8 @@
 			}
 
 			function controllo_stanza_esistente($nome_stanza){//controllo se è valido il titolo della finestra
-				if($nome_stanza=="" || str_replace(" ","",$nome_stanza)=="" || $nome_stanza=="None")return false;
+				if($nome_stanza=="None")return false;
+				
 				echo "<br>nome della stanza: $nome_stanza";
 				$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente'  from stanze where nome_stanza='$nome_stanza'"))[0];
 				//echo "<br>nome stanza: $risultato[1]";
@@ -272,7 +290,8 @@
 					<form action='admin.php'>\
 						<label for='ttlfoto'>immettere il tempo che lo studente ha per ogni foto</label>\
 						<input type='number' id='ttlfoto' name='TTLFoto'><br>\
-						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'><br>\
+						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'>\
+						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select><br>\
 						<label for='titoloStanza'>immettere il nome della stanza</label>\
 						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>\
 						<input type='submit' value='invia impostazioni' name='invioImpostazioni'>\
