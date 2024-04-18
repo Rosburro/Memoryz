@@ -60,61 +60,203 @@
 
     shuffle($personaggi);           //mescola l'array prima di mettere in tabella (per non dover mescolare le colonne della tabella)
 
-    //stampa tutte le figurine immagini
-    $count = 0;
-    foreach ($personaggi as $persona) {
-                    if ($count == 0) { 
-                        echo "<tr>"; 
-                    } 
-                    if ($count >= $quanteImmagini/2) {                
-                        $count = 0;
-                        echo "</tr><tr>";
-                    }
-                    echo "
-                        <td><br>
-                        
-                            <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
-                            <div hidden >
-                            <img src='http://sitinosetosobellino.altervista.org/progettoMemory/img/$persona[img]' width='250' height='400' >
-                            </div>
-                        
-                        </td>";
-                $count++;
-    }
+    //TABELLA 4 IMG
+    
 
-    //stampa tutte le figurine info
-    shuffle($personaggi);
-    $count = 0;
-    foreach ($personaggi as $persona) {
-                    if ($count == 0) { 
-                        echo "<tr>"; 
-                    } 
-                    if ($count >= $quanteImmagini/2) {                
-                        $count = 0;
-                        echo "</tr><tr>";
-                    }
-                    echo "<td> <br>
-                            <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
-                            
-                            <div hidden >
-                            <h1> $persona[n_completo]</h1> ";
-                            foreach ($persona["sugg"] as $consiglio){
-                                echo "<p>$consiglio</p>";
-                            }   
-                            echo "
 
-                            </div>    
-                            </td>";
-                        
-                $count++;
-    }
-        echo"
-            </table>
+    if($quanteImmagini == 16){sediciPC($personaggi,$quanteImmagini);}
+    if($quanteImmagini == 4){quattro($personaggi,$quanteImmagini);}
+    if($quanteImmagini == 8){otto($personaggi,$quanteImmagini);}
+    if($quanteImmagini == 10){dieci($personaggi,$quanteImmagini);}
+
+
+
+
+    echo"                
             </form>
             </body>
             </html>
     ";
 
+
+
+    //FUNZIONI IN BASE AL N DI IMG
+
+    function sediciPC($personaggi,$quanteImmagini){
+        $count = 0;
+        foreach ($personaggi as $persona) {
+            if ($count == 0) { 
+                echo "<tr>"; 
+            } 
+            if ($count >= $quanteImmagini/2) {                
+                $count = 0;
+                echo "</tr><tr>";
+            }
+            echo "
+                <td><br>
+                
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    <div hidden >
+                    <img src='http://sitinosetosobellino.altervista.org/progettoMemory/img/$persona[img]' width='250' height='400' >
+                    </div>
+                
+                </td>";
+        $count++;
+        }
+
+        //stampa tutte le figurine info
+        shuffle($personaggi);
+        $count = 0;
+        foreach ($personaggi as $persona) {
+            if ($count == 0) { 
+                echo "<tr>"; 
+            } 
+            if ($count >= $quanteImmagini/2) {                
+                $count = 0;
+                echo "</tr><tr>";
+            }
+            echo "<td> <br>
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    
+                    <div hidden >
+                    <h1> $persona[n_completo]</h1> ";
+            foreach ($persona["sugg"] as $consiglio){
+                echo "<p>$consiglio</p>";
+            }   
+            echo "
+                    </div>    
+                    </td>";     
+        $count++;
+        }
+            echo"</table>";
+    }
+
+
+    function quattro($personaggi,$quanteImmagini){
+        echo "<tr>";
+        foreach ($personaggi as $persona) {
+            
+            echo "
+                
+                <td><br>
+                
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    <div hidden >
+                    <img src='http://sitinosetosobellino.altervista.org/progettoMemory/img/$persona[img]' width='250' height='400' >
+                    </div>
+                
+                </td>
+                ";
+        
+        }
+        echo "</tr>";
+
+        //stampa tutte le figurine info
+        shuffle($personaggi);
+        echo "<tr>";
+        foreach ($personaggi as $persona) {
+            
+            echo "<td> <br>
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    
+                    <div hidden >
+                    <h1> $persona[n_completo]</h1> ";
+            foreach ($persona["sugg"] as $consiglio){
+                echo "<p>$consiglio</p>";
+            }   
+            echo "
+                    </div>    
+                    </td>";     
+
+        }
+        echo "</tr></table>";
+    }
+
+
+    function otto($personaggi,$quanteImmagini){
+        echo "<tr>";
+        $contatore = 1;
+        foreach ($personaggi as $persona) {
+            if($contatore>4){echo"</tr>"; $contatore=1;}
+            echo "
+                
+                <td><br>
+                
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    <div hidden >
+                    <img src='http://sitinosetosobellino.altervista.org/progettoMemory/img/$persona[img]' width='250' height='400' >
+                    </div>
+                
+                </td>
+                ";
+            $contatore++;
+        }
+        echo "</tr>";
+
+        //stampa tutte le figurine info
+        shuffle($personaggi);
+        echo "<tr>";
+        $contatore = 1;
+        foreach ($personaggi as $persona) {
+            if($contatore>4){echo"</tr>"; $contatore=1;}
+            echo "<td> <br>
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    
+                    <div hidden >
+                    <h1> $persona[n_completo]</h1> ";
+            foreach ($persona["sugg"] as $consiglio){
+                echo "<p>$consiglio</p>";
+            }   
+            echo "
+                    </div>    
+                    </td>";     
+            $contatore++;
+        }
+        echo "</tr></table>";
+    }
+
+
+    function dieci($personaggi,$quanteImmagini){
+        echo "<tr>";
+        $contatore = 1;
+        foreach ($personaggi as $persona) {
+            if($contatore>5){echo"</tr>"; $contatore=1;}
+            echo "
+                
+                <td><br>
+                
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    <div hidden >
+                    <img src='http://sitinosetosobellino.altervista.org/progettoMemory/img/$persona[img]' width='250' height='400' >
+                    </div>
+                
+                </td>
+                ";
+            $contatore++;
+        }
+        echo "</tr>";
+
+        //stampa tutte le figurine info
+        shuffle($personaggi);
+        echo "<tr>";
+        $contatore = 1;
+        foreach ($personaggi as $persona) {
+            if($contatore>5){echo"</tr>"; $contatore=1;}
+            echo "<td> <br>
+                    <img id='immagineUnknown' onclick='giraFigurina(this,$persona[indice])' src='http://sitinosetosobellino.altervista.org/progettoMemory/img/unknown.png' width='250' height='400' >
+                    
+                    <div hidden >
+                    <h1> $persona[n_completo]</h1> ";
+            foreach ($persona["sugg"] as $consiglio){
+                echo "<p>$consiglio</p>";
+            }   
+            echo "
+                    </div>    
+                    </td>";     
+            $contatore++;
+        }
+        echo "</tr></table>";
+    }
 
 
 ?>
