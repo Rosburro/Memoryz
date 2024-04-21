@@ -13,34 +13,39 @@ echo "
           <script type='text/javascript' src='js.js'></script>
           <style>
               .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 50px;
-                width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 50px;
+              width: 100%;
               }
 
               .button {
                 background-color: #007bff;
-                  color: #fff;
-                  border: none;
-                  padding: 0;
-                  width: 10em;
-                  height: 10em;
-                  text-align: center;
-                  text-decoration: none;
-                  display: inline-flex;
-                  justify-content: center;
-                  align-items: center;
-                  font-size: 3em;
-                  margin: 0;
-                  cursor: pointer;
-                  border-radius: 50%;
-                  transition: background-color 0.3s ease;
+                color: #fff;
+                border: none;
+                padding: 0;
+                width: 6em;
+                height: 6em;
+                text-align: center;
+                text-decoration: none;
+                aspect-ratio: 1/1; 
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 3em;
+                margin: 0;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: background-color 0.3s ease;
               }
 
               .button:hover {
                 background-color: #0056b3;
+              }
+
+              body{
+                zoom:60%;
               }
           </style>
       </head>
