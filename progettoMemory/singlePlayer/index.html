@@ -9,34 +9,38 @@
     <style>
         .container {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 50px;
-          width: 100%;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 2%;
         }
 
         .button {
           background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 0;
-            width: 10em;
-            height: 10em;
-            text-align: center;
-            text-decoration: none;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3em;
-            margin: 0;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background-color 0.3s ease;
+          color: #fff;
+          border: none;
+          padding: 2%;
+          width: 30%;
+          aspect-ratio: 1/1; /* Mantiene il rapporto 1:1 per evitare schiacciamenti */
+          text-align: center;
+          text-decoration: none;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 5em;
+          margin: 0;
+          cursor: pointer;
+          border-radius: 50%;
+          transition: background-color 0.3s ease;
         }
 
         .button:hover {
           background-color: #0056b3;
         }
+
+        body{
+          zoom:60%;
+        }
+
     </style>
 </head>
 <body>
@@ -50,6 +54,8 @@
       <button type='button' class='button' onclick="window.location.href='user.php?quant=10'">10</button>
     </div>
     <br>
+    <br>
+    <br>
     <div class='container'>
       <button type='button' class='button' onclick="window.location.href='user.php?quant=12'">12</button>
       <button type='button' class='button' onclick="window.location.href='user.php?quant=14'">14</button>
@@ -59,6 +65,3 @@
     </form>
 </body>
 </html>
-    
-
-                         
