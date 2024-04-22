@@ -1,6 +1,7 @@
 @import url('https://fonts.cdnfonts.com/css/vegan-style-personal-use');
 @import url('https://fonts.cdnfonts.com/css/aaa-bzh');
 @import url('https://fonts.cdnfonts.com/css/ogdred-weary');
+@import url('https://fonts.cdnfonts.com/css/vactory-sans');
 
 body{
     background-color: #e4f5f8;
@@ -11,8 +12,11 @@ img{
     position: absolute;
     right: 0%;
     top:-10%;
+    object-fit:fill;
 }
-
+#importante{
+    color: darkred;
+}
 #titolo{
     font-family: 'Vegan Style Personal Use', sans-serif;
     letter-spacing: .3ch;
@@ -21,10 +25,10 @@ img{
     font-size: 32pt;
 }
 label{
-    font-family: 'OgdredWeary', sans-serif;
+    font-family: 'VactorySans', sans-serif;
     letter-spacing: .2ch;
-    color: #453a73;
-    font-size: 22pt;
+    color: black;
+    font-size: 16spt;
 }
 
 #lato-dx{
