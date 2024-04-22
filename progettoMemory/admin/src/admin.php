@@ -36,18 +36,30 @@
 				echo "partita finita";
 				
 				//cose che servono per finire la partita (uguali al file finePartita.php)
+				
 				$_SESSION['partitaIniziata']=False;
 				$_SESSION['inizioRichieste']=false;
 				$_SESSION["roundInCorso"]=false;
-				$_SESSION['n_round']=0;
-				$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
-				$connessione->query("update stanze set inCorso=0, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				$_SESSION['alTermine']=true;
+				//$_SESSION['n_round']=0;
+				//$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
+				$connessione->query("update stanze set inCorso=1, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				
+				echo "<script>$('#tabellaAdmin').ready(
+					function(){
+
+						$('#tabellaAdmin').load('punteggioStudenti.php', function(dati,stat,xhr){
+							//console.log('entrato'+dati)
+						})
+					}
+					
+				)</script>";
 				echo "<br><button onclick='onClickterminaPartita()'>termina partita</button><br>";
+				
 				//header("location: ./finePartita.php");
 			}
 
-			 $fileStanze="../../tmp/tutteStanze.txt";
-
+			 
 			//cosa per le immagini
 			
 			
@@ -122,9 +134,9 @@
 				echo "<script src='../static/scriptAdminPartitaIniziata.js'></script>";
 				echo "<button onclick='onClickterminaPartita()'>termina partita</button>";
 				if($_SESSION["roundInCorso"]==0){
-					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound'>inizia round</button>";
+					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound' style='pointer-events: none;'>inizia round</button>";
 				}else{
-					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound'>fine round</button>";
+					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound' style='pointer-events: none;'>fine round</button>";
 				}
 				echo "round corrente: $_SESSION[n_round]<br>";
 				
@@ -134,13 +146,13 @@
 				//echo "entrato nel session ttl";
 				scrivi_form_impostazioni();
 
-			}else  if ((!isset($_SESSION['inizioRichieste']) || $_SESSION['inizioRichieste']==False) /*&& (!isset($_SESSION['partitaIniziata']) || $_SESSION['partitaIniziata']=False)*/){//bottone per inizio delle richieste
+			}else  if ((!isset($_SESSION['inizioRichieste']) || $_SESSION['inizioRichieste']==False) && (!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false) ){//bottone per inizio delle richieste
 				
 				echo "<div id='divImpostazioni'></div>
 						<button id='cambiaImpostazioni' onclick='scrivi_form_impostazioni()'> cambia impostazioni </button>";
 				echo "<button id='inizioRichieste' onclick='onClickInizia()'>inizio Richieste</button>";
 
-			}else {//attessa delle persone che entrino e bottone di chiusura
+			}else if((!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false)){//attessa delle persone che entrino e bottone di chiusura
 				//TODO: fare un if per controllare se i campi compilati sono validi
 				echo "in attesa di persone... ";
 				echo "<button onclick='onClickChiudiEntrate()'>Inizia Partita</button>";
@@ -204,6 +216,7 @@
 				if(!isset($_SESSION['inizioRichieste']))$_SESSION['inizioRichieste']=false;
 				if(!isset($_SESSION['partitaIniziata']))$_SESSION['partitaIniziata']=false;
 				if(!isset($_SESSION['suggerimenti']))$_SESSION['suggerimenti']=3;
+				if(!isset($_SESSION['alTermine']))$_SESSION['alTermine']=false;
 			}
 
 			function aggiungi_stanza($nome_stanza){//aggiunge il titolo della stanza al file
@@ -248,7 +261,8 @@
 				}else{
 					$appoggio_immagini = $_SESSION["immaginiSelezionate"];
 					for($i=0;$i<count($appoggio_immagini);$i++){
-						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".$appoggio_immagini[$i].")") or die("errore nell'inserire un immagine della stanza");
+						// si diminuisce di uno l'index perchè è aumentato di uno (se si cambia e si mette che parte da 0 togliere il -1)
+						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".($appoggio_immagini[$i]-1).")") or die("errore nell'inserire un immagine della stanza");
 					}
 				}
 			}
