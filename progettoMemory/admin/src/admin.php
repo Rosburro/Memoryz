@@ -16,8 +16,8 @@
 <body style='zoom:110%' >
 		<img src="../../img/admin.jpg">
 		<h1 id="titolo">MEMORI</h1>
-		<div id="lato-dx">aaaaaaaaaaa</div>
-		<div id="lato-sx">aaaaaaaaaaa</div>
+		<div id="lato-dx">aaaaaaaaaa</div>
+		<div id="lato-sx">aaaaaaaaaa</div>
 		
 		
 		<?php 
@@ -36,18 +36,30 @@
 				echo "partita finita";
 				
 				//cose che servono per finire la partita (uguali al file finePartita.php)
+				
 				$_SESSION['partitaIniziata']=False;
 				$_SESSION['inizioRichieste']=false;
 				$_SESSION["roundInCorso"]=false;
-				$_SESSION['n_round']=0;
-				$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
-				$connessione->query("update stanze set inCorso=0, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				$_SESSION['alTermine']=true;
+				//$_SESSION['n_round']=0;
+				//$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
+				$connessione->query("update stanze set inCorso=1, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				
+				echo "<script>$('#tabellaAdmin').ready(
+					function(){
+
+						$('#tabellaAdmin').load('punteggioStudenti.php', function(dati,stat,xhr){
+							//console.log('entrato'+dati)
+						})
+					}
+					
+				)</script>";
 				echo "<br><button onclick='onClickterminaPartita()'>termina partita</button><br>";
+				
 				//header("location: ./finePartita.php");
 			}
 
-			 $fileStanze="../../tmp/tutteStanze.txt";
-
+			 
 			//cosa per le immagini
 			
 			
@@ -122,9 +134,9 @@
 				echo "<script src='../static/scriptAdminPartitaIniziata.js'></script>";
 				echo "<button onclick='onClickterminaPartita()'>termina partita</button>";
 				if($_SESSION["roundInCorso"]==0){
-					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound'>inizia round</button>";
+					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound' style='pointer-events: none;'>inizia round</button>";
 				}else{
-					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound'>fine round</button>";
+					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound' style='pointer-events: none;'>fine round</button>";
 				}
 				echo "round corrente: $_SESSION[n_round]<br>";
 				
@@ -134,16 +146,16 @@
 				//echo "entrato nel session ttl";
 				scrivi_form_impostazioni();
 
-			}else  if ((!isset($_SESSION['inizioRichieste']) || $_SESSION['inizioRichieste']==False) /*&& (!isset($_SESSION['partitaIniziata']) || $_SESSION['partitaIniziata']=False)*/){//bottone per inizio delle richieste
+			}else  if ((!isset($_SESSION['inizioRichieste']) || $_SESSION['inizioRichieste']==False) && (!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false) ){//bottone per inizio delle richieste
 				
 				echo "<div id='divImpostazioni'></div>
 						<button id='cambiaImpostazioni' onclick='scrivi_form_impostazioni()'> cambia impostazioni </button>";
 				echo "<button id='inizioRichieste' onclick='onClickInizia()'>inizio Richieste</button>";
 
-			}else {//attessa delle persone che entrino e bottone di chiusura
+			}else if((!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false)){//attessa delle persone che entrino e bottone di chiusura
 				//TODO: fare un if per controllare se i campi compilati sono validi
 				echo "in attesa di persone... ";
-				echo "<button onclick='onClickChiudiEntrate()'>chiudi entrate inizia gioco</button>";
+				echo "<button onclick='onClickChiudiEntrate()'>Inizia Partita</button>";
 				echo "<script src='../static/scriptAdminVisualizzaStudenti.js'></script>";
 			}
 			
@@ -157,14 +169,16 @@
 
 			function scrivi_form_impostazioni(){
 				echo "
-					<p>CONPILARE SOLO I CAMPI NECESSARI</p>
+					<h2>COMPILARE SOLO I CAMPI NECESSARI</h2>
 					<form action='admin.php'>
-						<label for='ttlfoto'>immettere il tempo che lo studente ha per ogni foto</label>
-						<input type='number' id='ttlfoto' name='TTLFoto'><br>
-						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'>
+						<label for='ttlfoto'>Tempo per un round: </label>
+						<input type='number' placeholder='30secondi' id='ttlfoto' name='TTLFoto'><br>
+						<label>Numero di Round: </label>
+						<input type='number' placeholder='numero round' name='nRound' id='nRound'><br>
+						<label>Numero Consigli: </label>
 						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
 						<br>
-						<label for='titoloStanza'>immettere il nome della stanza</label>
+						<label for='titoloStanza' id='importante'>Nome stanza:</label>
 						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>
 						<input type='submit' value='invio impostazioni' name='invioImpostazioni'>
 					</form>
@@ -179,17 +193,17 @@
 				if(!$_SESSION['partitaIniziata'] && !$_SESSION['inizioRichieste']){
 					echo "<form action='eliminaStanza.php'><input type='submit' value='Elimina stanza'></form><br>";// bottone che serve ad eliminare la stranza
 				}
-				echo "Tempo settato per immagine: ".$_SESSION['TTLFoto']."<br>";
-				echo "Numero round: ".$_SESSION['numeroRound']."<br>";
-				echo "Suggerimenti per round: ".$_SESSION['suggerimenti']."<br>";
-				echo "Nome della stanza: ".$_SESSION['nomeStanza']."<br>";
+				echo "<label>Tempo per Round: ".$_SESSION['TTLFoto']."</label><br>";
+				echo "<label>Numero round: ".$_SESSION['numeroRound']."</label><br>";
+				echo "<label>Suggerimenti per round: ".$_SESSION['suggerimenti']."</label><br>";
+				echo "<label>Nome della stanza: ".$_SESSION['nomeStanza']."</label><br>";
 				$img_sel = "";
 				if($_SESSION['immaginiSelezionate']=="all"){
 					$img_sel="all";
 				}else{
 					$img_sel = implode(",",$_SESSION['immaginiSelezionate']);
 				}
-				echo "Immagini selezionate: ".$img_sel."<br>";
+				echo "<label>Immagini selezionate: ".$img_sel."</label><br>";
 			}
 
 			function controllo_variabili_sessione(){//default
@@ -202,6 +216,7 @@
 				if(!isset($_SESSION['inizioRichieste']))$_SESSION['inizioRichieste']=false;
 				if(!isset($_SESSION['partitaIniziata']))$_SESSION['partitaIniziata']=false;
 				if(!isset($_SESSION['suggerimenti']))$_SESSION['suggerimenti']=3;
+				if(!isset($_SESSION['alTermine']))$_SESSION['alTermine']=false;
 			}
 
 			function aggiungi_stanza($nome_stanza){//aggiunge il titolo della stanza al file
@@ -225,7 +240,7 @@
 			function controllo_stanza_esistente($nome_stanza){//controllo se è valido il titolo della finestra
 				if($nome_stanza=="None")return false;
 				
-				echo "<br>nome della stanza: $nome_stanza";
+				echo "<br>Nome della stanza: $nome_stanza";
 				$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente'  from stanze where nome_stanza='$nome_stanza'"))[0];
 				//echo "<br>nome stanza: $risultato[1]";
 				if($risultato[0]==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 
@@ -246,7 +261,8 @@
 				}else{
 					$appoggio_immagini = $_SESSION["immaginiSelezionate"];
 					for($i=0;$i<count($appoggio_immagini);$i++){
-						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".$appoggio_immagini[$i].")") or die("errore nell'inserire un immagine della stanza");
+						// si diminuisce di uno l'index perchè è aumentato di uno (se si cambia e si mette che parte da 0 togliere il -1)
+						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".($appoggio_immagini[$i]-1).")") or die("errore nell'inserire un immagine della stanza");
 					}
 				}
 			}
@@ -286,15 +302,17 @@
 			}
 			function scrivi_form_impostazioni(){
 
-				$("<p>CONPILARE SOLO I CAMPI NECESSARI</p>\
+				$("<h2>COMPILARE SOLO I CAMPI NECESSARI</h2>\
 					<form action='admin.php'>\
-						<label for='ttlfoto'>immettere il tempo che lo studente ha per ogni foto</label>\
-						<input type='number' id='ttlfoto' name='TTLFoto'><br>\
-						<input type='number' placeholder='numero dei round' name='nRound' id='nRound'>\
+						<label for='ttlfoto'>Tempo per un round: </label>\
+						<input type='number' placeholder='30secondi' id='ttlfoto' name='TTLFoto'><br>\
+						<label>Numero di Round: </label>\
+						<input type='number' placeholder='numero round' name='nRound' id='nRound'><br>\
+						<label>Numero Consigli: </label>\
 						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select><br>\
-						<label for='titoloStanza'>immettere il nome della stanza</label>\
+						<label for='titoloStanza' id='importante'>Nome stanza:</label>\
 						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>\
-						<input type='submit' value='invia impostazioni' name='invioImpostazioni'>\
+						<input type='submit' value='invio impostazioni' name='invioImpostazioni'>\
 					</form>\
 					<button onclick='onclickBottoneSelezionaImmagini()'>seleziona immagini</button><br>\
 					<button id='closeImpostazioni' onclick='onclickCloseImpostazioni()'>chiudi la modifica impostazioni</button>").appendTo("#divImpostazioni");

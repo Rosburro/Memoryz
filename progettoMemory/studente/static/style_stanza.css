@@ -1,0 +1,27 @@
+body{
+    background-color: #e4f5f8;
+}
+table{
+    margin: auto;
+    padding-top: 5%;
+    vertical-align:middle;
+}
+th{
+    color: brown;
+    font-size: large;
+}
+input{
+    margin-left: 1%;
+}
+td, #th{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#tr{
+    font-size: smaller;
+}
+#G{
+    text-align: center;
+    font-size: xx-large;
+    font-style: italic;
+}

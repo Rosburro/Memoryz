@@ -6,7 +6,7 @@
 	<meta name='viewport' content="width=device-width, initial-scale=1">
 	<title>studente</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	
+	<link rel="stylesheet" href="../static/style_stanza.css">
 </head>
 
 <body>
@@ -28,12 +28,48 @@
 		}else{
 			echo "
 			<script type='text/javascript' src='../static/studenteAccesso.js'></script>
-				<form action='partecipa.php' method='get'>
-					<select id='selectStanzaAperta' name='stanzaSelezionata'>
+				<form action='partecipa.php' method='get' align='center'>
+					<table border='0'>
+						<tr id='tr'>
+							<th>ID Stanza<br></th><th>Nome</th>
+						</tr>
+						<tr>
+							<td align='right'><select id='selectStanzaAperta' name='stanzaSelezionata'></td>
+							<td><input type='text' placeholder='Azzi' name='nomePartecipante' id='nome'>
+							<input type='submit' name='inviaForm' value='Entra' id='invia'></td>
+						</tr>
+					</table>
+					<br>
+					<div id='G'>GUIDA</div>
+					<table>
+						<tr>
+							<th id='th'>Istruzioni</th><th id='th'>Informazioni</th>
+						</tr>
+						<tr>
+							<td id='P'>
+								<b>1.</b>Questa è la sala d'attesa. Nel mentre si aspetta la Prof, è possibile scegliere il nome.<br><br>
+								<b>2.</b>Qando la Prof crerà la stanza, l'ID verrà seleziona in automatico.<br><br>
+								<b>3.</b>Cliccare il pulsante 'Entra' quando si desidera entrare nella stanza.<br><br>
+								<b>4.</b>!!!LA PARTITA NON INIZIERA' FINO A QUANDO LA PROF <br>NON CONFERMERA' L'INIZIO
+							</td>
+							<td>
+								<b>Come funziona il gioco?<br></b><br>
+								Quando la partita inizia, verranno visualizzate delle
+								immagini. L'obiettivo è di indovinare il nome.<br><br>
+								<b>Ci sono i punti?</b><br><br>
+								Si possono guadagnare fino a 100 punti per round. 
+								I punti vengono dati in base al tempo passato ad indovinare.<br>
+								<br><b>Se non mi ricordo il nome?</b><br><br>
+								Per faciliare il compito, il nome verrà visualizzato lentamente con il tempo.
+								In aggiunta esistono i <b>Consigli</b> che a costo di 5 punti verrà visualizzato un consiglio. 
+							</td>
+						</tr>
+					
+					</table>
+					
 						
 					</select>
-					<input type='text' name='nomePartecipante' id='nome'>
-					<input type='submit' name='inviaForm' value='Entra' id='invia'>
+					
 				
 				</form>";
 		}
