@@ -28,7 +28,8 @@
     //echo "asdsadasdasdasdasd";
 	$tempi = mysqli_fetch_all($connessione -> query("select TTLImg, (utc_time()-inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0];
 	$sugg_max = mysqli_fetch_all($connessione->query("select max_suggerimenti from stanze where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
-    
+    $parola = $personaggio -> n_completo;
+	$parola = str_replace("'", "\\'", $parola);
     $sugg_rimasti = $sugg_max-mysqli_fetch_all($connessione->query("select suggerimenti from partecipanti where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
 
 	$script_js = "<script style='visibility: hidden;display:none;'>
@@ -37,7 +38,7 @@
 			let sugg_partita = sugg_max;
 			let sugg_rim = $sugg_rimasti;
 			let t_start = ".$tempi[1].";
-			let parola = '".$personaggio -> n_completo."';
+			let parola = '".$parola."';
 			let punteggioTot = $_SESSION[punteggioPlayer];
 			let path_immagine = 'http://sitinosetosobellino.altervista.org/progettoMemory/img/".($personaggio -> img) ."';
 			let lista_consigli= [";
@@ -59,9 +60,9 @@
 	$script_js.="
 				let guess = [";
 	for($i=0;$i<count($guess)-1;$i++){
-		$script_js.="'$guess[$i]',";
+		$script_js.="'".str_replace("'", "\\'", $guess[$i])."',";
 	}
-	$script_js.="'".$guess[count($guess)-1]."']; </script>";
+	$script_js.="'".str_replace("'", "\\'", $guess[count($guess)-1])."']; </script>";
 
 	
 	

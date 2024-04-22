@@ -240,7 +240,7 @@ $(document).ready(function(){
         
         console.log("punteggio: "+punteggio)
         $.post("../src/inviaGuest.php", {punteggio:punteggio}, function(dati){
-            if(dati[1]=="0"){
+            if(dati=="0"){
                 alert("risposta già inviata impossibile inviarne un altra.")
             }
             console.log(dati)

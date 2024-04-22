@@ -7,6 +7,9 @@ $(document).ready(function(){
 	
 	setInterval(funzionePunteggio, 1_000)
 	setInterval(funzioneAggiornaImmagine, 1_000)
+	setTimeout(function(){$("#iniziaTerminaRound").ready(function(){
+		$("#iniziaTerminaRound").css("pointer-events", "all")
+	})}, 2_000)//toglie il blocco ai bottoni fine round e inizia per evitare che si clicchino troppo in fretta e causino errore allo studente
 })
 
 

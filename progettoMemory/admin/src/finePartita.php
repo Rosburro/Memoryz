@@ -4,6 +4,7 @@
 	$_SESSION['partitaIniziata']=False;
 	$_SESSION['inizioRichieste']=false;
 	$_SESSION["roundInCorso"]=false;
+	$_SESSION['alTermine']=false;//è terminata
 	$_SESSION['n_round']=0;
 	$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
 	$connessione->query("update round set inCorso=0 where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nellaggiornameto del round");
