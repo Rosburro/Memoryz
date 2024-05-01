@@ -1,87 +1,62 @@
-<?php
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittoria</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #afeeee;
+        }
 
-session_start();
+        .btn {
+            border-radius: 9999px;
+            padding: 10px 20px; 
+            font-size: 2rem;
+        }
 
-echo "
-      <html>
-      <head>
-          <title> Memory post </title>
-          <meta charset='utf-8'>
-          <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-          <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-          <link rel='stylesheet' type='text/css' href='styles.css'>
-          <script type='text/javascript' src='js.js'></script>
-          <style>
-              .container {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-top: 50px;
-              width: 100%;
-              }
+        .title {
+            font-size: 2rem; 
+            font-weight: bold; 
+            color: #333; 
+            margin-bottom: 20px; 
+        }
 
-              .button {
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 0;
-                width: 6em;
-                height: 6em;
-                text-align: center;
-                text-decoration: none;
-                aspect-ratio: 1/1; 
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 3em;
-                margin: 0;
-                cursor: pointer;
-                border-radius: 50%;
-                transition: background-color 0.3s ease;
-              }
+        .paragraph {
+            font-size: 1.5rem; 
+            color: #555; 
+            margin-bottom: 40px; 
+        }
 
-              .button:hover {
-                background-color: #0056b3;
-              }
+        @media screen and (min-width: 1366px) {
+            .btn {
+                margin: 0 15rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4">
+        <?php
+        if (!isset($_GET['t'])) {
+            echo "<h1 class='title text-center'>Sei entrato in modo illecito</h1>";
+        } else {
+            echo "
+                <h1 class='title text-center'>Complimenti! <br>Hai vinto!</h1>
+                <p class='paragraph text-center'>Hai fatto $_GET[t] tentativi, ora scegli cosa fare</p><br>
+                <div class='flex justify-between'>
+                <button class='btn bg-blue-500 text-white' onclick=\"window.location.href='index.html'\">Home</button>";
 
-              body{
-                zoom:60%;
-              }
-          </style>
-      </head>
-      <body>
-          <form>";
-          
-     
-if(!isset($_GET['t'])){
-    echo "<h1>Sei entrato in un modo illecito</h1>";
-}
-
-else{
-  echo "<h1 style='text-align:center; font-size:5em;'>Complimenti! Hai vinto!<br><br> </h1>
-        <p style='text-align:center; font-size:3em;'>Hai fatto $_GET[t] tenativi, ora scegli cosa fare</p>";
-
-
-  echo"
-      <div class='container'>
-      <button type='button' class='button' onclick=window.location.href='index.html'>Home</button>";
-
-
-if(!isset($_SESSION['ultimaPartita'])){
-  echo"<button type='button' class='button' onclick=window.location.href='user.php'>Rigioca</button>";
-} 
-else{
-  echo"<button type='button' class='button' onclick=window.location.href='user.php?quant=$_SESSION[ultimaPartita]'>Rigioca</button>";
-  session_destroy();
-}
-    
-}
-
-  echo"
+            session_start();   
+            if (!isset($_SESSION['ultimaPartita'])) {
+                echo "<button class='btn bg-green-500 text-white' onclick=\"window.location.href='user.php'\">Rigioca</button>";
+            } else {
+                echo "<button class='btn bg-green-500 text-white' onclick=\"window.location.href='user.php?quant=$_SESSION[ultimaPartita]'\">Rigioca</button>";
+                session_destroy();
+            }
+            echo "</div>";
+        }
+        ?>
     </div>
-    </form>
-    </body>
-    </html>";
-
-
-?>
+</body>
+</html>
