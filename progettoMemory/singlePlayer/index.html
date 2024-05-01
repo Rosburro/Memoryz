@@ -1,67 +1,84 @@
-<html>
+<!DOCTYPE html>
 <head>
-    <title> Memory pre </title>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <link rel='stylesheet' type='text/css' href='styles.css'>
-    <script type='text/javascript' src='js.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory pre</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #afeeee;
+        }
+
         .container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          margin-top: 2%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2%;
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 0 20px; 
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 2%;
         }
 
         .button {
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          padding: 2%;
-          width: 30%;
-          aspect-ratio: 1/1; /* Mantiene il rapporto 1:1 per evitare schiacciamenti */
-          text-align: center;
-          text-decoration: none;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 5em;
-          margin: 0;
-          cursor: pointer;
-          border-radius: 50%;
-          transition: background-color 0.3s ease;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 2%;
+            width: 30%;
+            aspect-ratio: 1/1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
         }
 
         .button:hover {
-          background-color: #0056b3;
+            background-color: #0056b3;
         }
 
-        body{
-          zoom:60%;
+        .header {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
+        @media screen and (max-width: 767px) {
+            .button {
+                font-size: 3em;
+                padding: 5%;
+            }
+        }
     </style>
 </head>
 <body>
-    <form>
-
-    <h1 style='text-align:center; font-size:5em;'>Scegli con quanti personaggi vuoi giocare<br><br> </h1>
-
-    <div class='container'>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=4'">4</button>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=8'">8</button>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=10'">10</button>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class='container'>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=12'">12</button>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=14'">14</button>
-      <button type='button' class='button' onclick="window.location.href='user.php?quant=16'">16</button>
+    <div class="container">
+        <h1 class="header text-center mb-8">Scegli con quanti personaggi vuoi giocare</h1><br><br>
+        <div class="button-container">
+            <button class="button" onclick="window.location.href='user.php?quant=4'">4</button>
+            <button class="button" onclick="window.location.href='user.php?quant=8'">8</button>
+            <button class="button" onclick="window.location.href='user.php?quant=10'">10</button>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="window.location.href='user.php?quant=12'">12</button>
+            <button class="button" onclick="window.location.href='user.php?quant=14'">14</button>
+            <button class="button" onclick="window.location.href='user.php?quant=16'">16</button>
+        </div>
     </div>
 
-    </form>
+
+      
+</div>
 </body>
 </html>
