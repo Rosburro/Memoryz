@@ -77,10 +77,15 @@
         </head>";
 
 
+
     //impaginazione schermata utente con tabella immagini
     echo"
 
         <body onload='mescolaTabella(); salvaCont()'>
+            <div class='avviso-non-desktop'>
+                Questa pagina è ottimizzata per l'uso su desktop. Si prega di visitarla da un dispositivo desktop per una migliore esperienza.
+            </div>
+            <div class='solo-desktop'>
             <form name='memory'>
             <table align='center' id='tabella' cellpadding='10'>
             
@@ -102,6 +107,7 @@
 
     echo"                
             </form>
+            </div>
             </body>
             </html>
     ";
