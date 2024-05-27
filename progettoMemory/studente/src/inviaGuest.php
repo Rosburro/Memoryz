@@ -16,7 +16,7 @@
                 $_SESSION["punteggioPlayer"]+=$_POST["punteggio"];
               //  echo "punteggioToto: $_SESSION[punteggioPlayer], punteggio loc: $_POST[punteggio]";
                 //cambia il punteggio del giocatore
-                $connessione->query("update partecipanti set inviato=1 where nome_stanza='$_SESSION[stanzaSelezionata]' and username='$_SESSION[nomePartecipante]'") or die("non ha funzionato l'aggiornamento dell'invio dello studente");
+                $connessione->query("update partecipanti set inviato=1, risposta='$_POST[risposta]' where nome_stanza='$_SESSION[stanzaSelezionata]' and username='$_SESSION[nomePartecipante]'") or die("non ha funzionato l'aggiornamento dell'invio dello studente");
                 $connessione->query("update partecipanti set punteggio=$_SESSION[punteggioPlayer] where username='$_SESSION[nomePartecipante]' and nome_stanza='$_SESSION[stanzaSelezionata]'");
                 echo "1";
                 return;

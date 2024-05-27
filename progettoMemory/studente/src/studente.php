@@ -15,7 +15,7 @@
 	<?php
 		//TODO verificare se il nome nella get è corretto o meno
 		session_start();
-
+		//si potrebbe far visualizzare anche qui la classifica
 		//TODO da mettere ancora le guess (una volta che dario le ha implementate nel js)
 		if(isset($_SESSION['nomePartecipante']) && isset($_SESSION['stanzaSelezionata'])){
 			echo "<link rel='stylesheet' href='../static/studenteInCorso.css'>

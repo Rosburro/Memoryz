@@ -1,6 +1,9 @@
+/* 
+  STILI UNIVERSALI PER TUTTI I FORMATI 
+*/
+
 body{
   background-color: #afeeee;
-  zoom: 60%;
 }
 
 
@@ -32,44 +35,65 @@ body.flashCorretto {
 
 
 
-p{
-  font-size: 25;
-  font-weight: bold;
-}
 
 
-h1{
-  font-style: italic;
-}
-
-td{
-  text-align: center;
-  vertical-align: top;
-  width: 275px;
-  height: 400px;
-  overflow: auto; 
-}
+/* 
+  STILI DIVISI PER FORMATO
+*/
 
 
 
-@media (max-width: 1366px) {
+@media screen and (max-width: 1920px){  /* CSS PER RISOLUZIONI 1920x */
+
   body{
-    zoom:150%;
+    zoom: 60%;
   }
-  .solo-desktop {
-    display: none;
+
+  p{
+    font-size: 25;
+    font-weight: bold;
   }
+
+
+  h1{
+    font-style: italic;
+  }
+
+  td{
+    text-align: center;
+    vertical-align: top;
+    width: 275px;
+    height: 400px;
+    overflow: auto; 
+  }
+
+
+
 }
 
-@media (min-width: 1366px) {
-      .avviso-non-desktop {
-        display: none;
-      }
-    }
+@media screen and (min-width: 1440px){  /* CSS PER RISOLUZIONI 1440x */
+  
+  body{
+    zoom: 50%;
+  }
 
-.avviso-non-desktop {
+  p{
+    font-size: 25;
+    font-weight: bold;
+  }
+
+
+  h1{
+    font-style: italic;
+  }
+
+  td{
     text-align: center;
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
+    vertical-align: top;
+    width: 275px;
+    height: 400px;
+    overflow: auto; 
+  }
+
+
 }

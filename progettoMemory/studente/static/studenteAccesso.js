@@ -13,8 +13,8 @@ function stanzeAperte(){
 		if(selezionata>=0){
 			let stanza =document.getElementById("selectStanzaAperta")
 			console.log(stanza.options[selezionata].text)
-			//stanza.options[selezionata].selected=true  
-			stanza.value = stanza.options[selezionata].text
+			stanza.options[selezionata].selected=true  
+			// stanza.value = stanza.options[selezionata].text
 		}
 	})
 	

@@ -7,7 +7,7 @@ body{
     background-color: #e4f5f8;
     text-align: center;
 }
-img{
+.backgroundAdmin{
     z-index: -1;
     position: absolute;
     right: 0%;

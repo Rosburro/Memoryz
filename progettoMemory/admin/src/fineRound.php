@@ -8,7 +8,7 @@
     //$partecipanti_ignavi = $connessione->query("update partecipanti set punteggio=punteggio-5 where nome_stanza='$_SESSION[nomeStanza]' and inviato=0 and punteggio>0");
         
     //setta che nessuno ha inviato ancora la risposta
-    $connessione->query("update partecipanti set inviato=0 where nome_stanza='$_SESSION[nomeStanza]'");
+    $connessione->query("update partecipanti set inviato=0, risposta='' where nome_stanza='$_SESSION[nomeStanza]'");
     
     header('Location: ./admin.php');
 ?>

@@ -4,6 +4,7 @@
 	require "../../sql/config.php";
 	if(isset($_GET['inviaForm'])){
 		//TODO sistemare il nome a modinjo o ci sono casini, (non case sensitive)
+		if(!isset($_GET['stanzaSelezionata'])) header("location: studente.php");
 		echo  $_GET["stanzaSelezionata"];
 		if(controllo_nome_partecipante($_GET['nomePartecipante'], $_GET["stanzaSelezionata"])){
 			//echo "entrato qui ppppp";

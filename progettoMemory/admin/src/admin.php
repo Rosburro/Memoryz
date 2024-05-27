@@ -12,9 +12,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../static/admin_css.css">
 	<link rel="stylesheet" href="../static/css_admin.css">
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
 <body style='zoom:110%' >
-		<img src="../../img/admin.jpg">
+		<img src="../../img/admin.jpg" class="backgroundAdmin">
 		<h1 id="titolo">MEMORI</h1>
 		<div id="lato-dx">aaaaaaaaaa</div>
 		<div id="lato-sx">aaaaaaaaaa</div>
@@ -48,7 +49,7 @@
 				echo "<script>$('#tabellaAdmin').ready(
 					function(){
 
-						$('#tabellaAdmin').load('punteggioStudenti.php', function(dati,stat,xhr){
+						$('#tabellaAdmin').load('punteggioStudenti.php?Classifica=1', function(dati,stat,xhr){
 							//console.log('entrato'+dati)
 						})
 					}
@@ -201,7 +202,8 @@
 				if($_SESSION['immaginiSelezionate']=="all"){
 					$img_sel="all";
 				}else{
-					$img_sel = implode(",",$_SESSION['immaginiSelezionate']);
+					$img_sel=count($_SESSION['immaginiSelezionate'])." - ";
+					$img_sel.= "[".implode(",",$_SESSION['immaginiSelezionate'])."]";
 				}
 				echo "<label>Immagini selezionate: ".$img_sel."</label><br>";
 			}
@@ -212,7 +214,7 @@
 				if(!isset($_SESSION['nomeStanza']))$_SESSION['nomeStanza']='None';
 				if(!isset($_SESSION['numeroRound']))$_SESSION['numeroRound']=5;
 				if(!isset($_SESSION["roundInCorso"]))$_SESSION["roundInCorso"]=false;
-				if(!isset($_SESSION['n_round']))$_SESSION['n_round']=1;
+				if(!isset($_SESSION['n_round']))$_SESSION['n_round']=0;
 				if(!isset($_SESSION['inizioRichieste']))$_SESSION['inizioRichieste']=false;
 				if(!isset($_SESSION['partitaIniziata']))$_SESSION['partitaIniziata']=false;
 				if(!isset($_SESSION['suggerimenti']))$_SESSION['suggerimenti']=3;

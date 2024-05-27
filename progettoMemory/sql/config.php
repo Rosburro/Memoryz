@@ -28,6 +28,7 @@
 								nome_stanza varchar(20) references stanze(nome_stanza) on delete cascade on update cascade,
 								punteggio int default 0,
 								inviato tinyint(1) default 0,
+								risposta varchar(50) default '',
 								suggerimenti int default 0,
 								primary key(username, nome_stanza) 
 							)") or die("errore nella creazione della tabella partecipanti");

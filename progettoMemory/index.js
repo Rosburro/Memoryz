@@ -209,7 +209,8 @@ $(document).ready(function(){
         $("<label id='Pround'>").html("Punteggio round: "+punteggio.toFixed(2)).css("bottom", "92%").appendTo("body");
         //cambiato da Roberto
         console.log("punteggio: "+punteggio)
-        $.post("../src/inviaGuest.php", {punteggio:punteggio}, function(dati){
+        console.log(risposta)//non riesce a leggere la variabile 
+        $.post("../src/inviaGuest.php", {punteggio:punteggio, risposta:risposta}, function(dati){
             if(dati[1]=="0"){
                 alert("risposta già inviata impossibile inviarne un altra.")
             }
