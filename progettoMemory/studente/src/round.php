@@ -26,6 +26,7 @@
 	//echo "il personaggio si chiama: ".$personaggio -> n_completo;
 	//echo "<script>alert('ciao')</script>";
     //echo "asdsadasdasdasdasd";
+	//TODO: sistemare il tempo
 	$tempi = mysqli_fetch_all($connessione -> query("select TTLImg, (utc_time()-inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0];
 	$sugg_max = mysqli_fetch_all($connessione->query("select max_suggerimenti from stanze where nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
     $parola = $personaggio -> n_completo;

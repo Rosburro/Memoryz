@@ -32,7 +32,3 @@ function conferma() {
 
 	window.location.href = "admin.php?scelte=" + stringaScelte;
 }
-
-function tutte() {
-    window.location.href = "admin.php?scelte=all";
-}

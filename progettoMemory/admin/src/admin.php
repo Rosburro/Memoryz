@@ -1,7 +1,7 @@
 <?php ob_start();?>
 
 <!DOCTYPE html>
-<html>
+<html data-theme="nord">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,13 +12,21 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../static/admin_css.css">
 	<link rel="stylesheet" href="../static/css_admin.css">
+	<!-- daisy ui -->
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.tailwindcss.com"></script>
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
-<body style='zoom:110%' >
-		<img src="../../img/admin.jpg" class="backgroundAdmin">
-		<h1 id="titolo">MEMORI</h1>
-		<div id="lato-dx">aaaaaaaaaa</div>
-		<div id="lato-sx">aaaaaaaaaa</div>
+<body>
+
+		<!-- div contenento il nome dell personaggio raffgurato dall'immagine e l'immagine stessa -->
+		<div id='divImgDaIndovinare' class="divImgDaIndovinare" hidden>
+				<p id="nomeTizio" class="nomeTizio badge badge-info gap-2"></p>
+				<img id="contenitoreImg" class="contenitoreImg" width='300'>
+		</div>
+		<!-- infomazioni sulla stanza e tabella partecipanti -->
+		<div class='divInfo'>
+		<h1 class='titolo'>MEMORY</h1>
 		
 		
 		<?php 
@@ -55,7 +63,7 @@
 					}
 					
 				)</script>";
-				echo "<br><button onclick='onClickterminaPartita()'>termina partita</button><br>";
+				echo "<br><button onclick='onClickterminaPartita()' class='btn btn-sm btn-error'>termina partita</button><br>";
 				
 				//header("location: ./finePartita.php");
 			}
@@ -130,16 +138,17 @@
 			if(isset($_SESSION['partitaIniziata']) && $_SESSION['partitaIniziata']==True){//partita iniziata
 
 				
-				echo "partita in corso";
-				
+				echo "<p class='badge badge-primary'>partita in corso</p>";
+				echo "<p class='badge badge-info'>round corrente: $_SESSION[n_round]</p><br>";
 				echo "<script src='../static/scriptAdminPartitaIniziata.js'></script>";
-				echo "<button onclick='onClickterminaPartita()'>termina partita</button>";
+
+				echo "<button onclick='onClickterminaPartita()' class='btn btn-sm btn-error'>termina partita</button>";
 				if($_SESSION["roundInCorso"]==0){
-					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound' style='pointer-events: none;'>inizia round</button>";
+					echo "<button onclick='onClickIniziaRound()' id='iniziaTerminaRound' style='pointer-events: none;' class='btn btn-sm btn-success'>inizia round</button>";
 				}else{
-					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound' style='pointer-events: none;'>fine round</button>";
+					echo "<button onclick='onClickFineRound()' id='iniziaTerminaRound' style='pointer-events: none;' class='btn btn-sm btn-warning'>fine round</button>";
 				}
-				echo "round corrente: $_SESSION[n_round]<br>";
+				echo '<br>';
 				
 
 
@@ -149,14 +158,18 @@
 
 			}else  if ((!isset($_SESSION['inizioRichieste']) || $_SESSION['inizioRichieste']==False) && (!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false) ){//bottone per inizio delle richieste
 				
-				echo "<div id='divImpostazioni'></div>
-						<button id='cambiaImpostazioni' onclick='scrivi_form_impostazioni()'> cambia impostazioni </button>";
-				echo "<button id='inizioRichieste' onclick='onClickInizia()'>inizio Richieste</button>";
+				echo "<div id='divImpostazioni' hidden=''>";
+				scrivi_form_impostazioni();
+				echo "<br><button id='closeImpostazioni' onclick='onclickCloseImpostazioni()' class='btn btn-sm btn-error'>chiudi la modifica impostazioni</button> 
+						</div>
+						<button id='cambiaImpostazioni' onclick='scrivi_form_impostazioni()' class='btn btn-sm btn-warning'> cambia impostazioni </button>
+						
+						<button id='inizioRichieste' onclick='onClickInizia()' class='btn btn-sm btn-accent'>inizio Richieste</button>";
 
 			}else if((!isset($_SESSION['alTermine']) or $_SESSION['alTermine']==false)){//attessa delle persone che entrino e bottone di chiusura
 				//TODO: fare un if per controllare se i campi compilati sono validi
-				echo "in attesa di persone... ";
-				echo "<button onclick='onClickChiudiEntrate()'>Inizia Partita</button>";
+				echo "<p class='badge badge-warning gap-2'>in attesa di persone...</p> ";
+				echo "<button onclick='onClickChiudiEntrate()' class='btn btn-sm btn-success'>Inizia Partita</button>";
 				echo "<script src='../static/scriptAdminVisualizzaStudenti.js'></script>";
 			}
 			
@@ -173,17 +186,17 @@
 					<h2>COMPILARE SOLO I CAMPI NECESSARI</h2>
 					<form action='admin.php'>
 						<label for='ttlfoto'>Tempo per un round: </label>
-						<input type='number' placeholder='30secondi' id='ttlfoto' name='TTLFoto'><br>
+						<input type='number' placeholder='30secondi' id='ttlfoto' name='TTLFoto' class='input input-bordered input-sm w-32 max-w-xs '><br>
 						<label>Numero di Round: </label>
-						<input type='number' placeholder='numero round' name='nRound' id='nRound'><br>
+						<input type='number' placeholder='numero round' name='nRound' id='nRound' class='input input-bordered input-sm w-50 max-w-xs'><br>
 						<label>Numero Consigli: </label>
-						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+						<select name='suggerimenti' class='select select-bordered select-sm  max-w-xs'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
 						<br>
 						<label for='titoloStanza' id='importante'>Nome stanza:</label>
-						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>
-						<input type='submit' value='invio impostazioni' name='invioImpostazioni'>
+						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio' class='input input-bordered input-sm w-100 max-w-xs'>
+						<input type='submit' value='invio impostazioni' name='invioImpostazioni' class='btn btn-sm btn-success'>
 					</form>
-					<button onclick='onclickBottoneSelezionaImmagini()'>seleziona immagini</button>";
+					<button onclick='onclickBottoneSelezionaImmagini()' class='btn btn-sm btn-warning'>seleziona immagini</button>";
 			}
 
 			function controllo_vsessione_settate(){
@@ -192,12 +205,13 @@
 
 			function visualizza_impostazioni(){
 				if(!$_SESSION['partitaIniziata'] && !$_SESSION['inizioRichieste']){
-					echo "<form action='eliminaStanza.php'><input type='submit' value='Elimina stanza'></form><br>";// bottone che serve ad eliminare la stranza
+					echo "<form action='eliminaStanza.php'><input type='submit' value='Elimina stanza' class='btn btn-sm btn-error'></form><br>";// bottone che serve ad eliminare la stranza
 				}
-				echo "<label>Tempo per Round: ".$_SESSION['TTLFoto']."</label><br>";
-				echo "<label>Numero round: ".$_SESSION['numeroRound']."</label><br>";
-				echo "<label>Suggerimenti per round: ".$_SESSION['suggerimenti']."</label><br>";
-				echo "<label>Nome della stanza: ".$_SESSION['nomeStanza']."</label><br>";
+				echo "<p class='pImpostazioni'>Tempo per Round: ".$_SESSION['TTLFoto']."</p>";
+				echo "<p class='pImpostazioni'>Numero round: ".$_SESSION['numeroRound']."</p>";
+				echo "<p class='pImpostazioni'>Suggerimenti per round: ".$_SESSION['suggerimenti']."</p>";
+				echo "<lable class='pImpostazioni'>Nome della stanza:</lable>
+						<p id='nomeStanza' class='pImpostazioni' style='display:inline'> ".$_SESSION['nomeStanza']."</p><br>";
 				$img_sel = "";
 				if($_SESSION['immaginiSelezionate']=="all"){
 					$img_sel="all";
@@ -275,16 +289,20 @@
 
 		ob_end_flush();
 		 ?>
+		 <br>
 		<div id="contenitoreTabEImg" class="contenitoreTab">
-			<table class='tabellaAdmin' id='tabellaAdmin'>
+		<div class="overflow-x-auto">
+		<table class='table w-52' align='center'>
+			<thead id='theadAdmin'>
 				
+			</thead>
+			<tbody id='tabellaAdmin'>
+				
+			</tbody>
 			</table>
-			<div class="divImgDaIndovinare">
-				<p id="nomeTizio" class="nomeTizio"></p>
-				<img id="contenitoreImg" class="contenitoreImg" height="300px">
-			</div>
-			
-			
+			</div>	
+
+		</div>
 		</div>
 
 			<!-- TODO: far si che il js e il css vengano spostati in un file separato -->
@@ -304,26 +322,13 @@
 			}
 			function scrivi_form_impostazioni(){
 
-				$("<h2>COMPILARE SOLO I CAMPI NECESSARI</h2>\
-					<form action='admin.php'>\
-						<label for='ttlfoto'>Tempo per un round: </label>\
-						<input type='number' placeholder='30secondi' id='ttlfoto' name='TTLFoto'><br>\
-						<label>Numero di Round: </label>\
-						<input type='number' placeholder='numero round' name='nRound' id='nRound'><br>\
-						<label>Numero Consigli: </label>\
-						<select name='suggerimenti'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select><br>\
-						<label for='titoloStanza' id='importante'>Nome stanza:</label>\
-						<input type='text' id='titoloStanza' name='titoloStanza' placeholder='campo obbligatorio'>\
-						<input type='submit' value='invio impostazioni' name='invioImpostazioni'>\
-					</form>\
-					<button onclick='onclickBottoneSelezionaImmagini()'>seleziona immagini</button><br>\
-					<button id='closeImpostazioni' onclick='onclickCloseImpostazioni()'>chiudi la modifica impostazioni</button>").appendTo("#divImpostazioni");
-
-				$("#cambiaImpostazioni").hide()
+				$('#divImpostazioni').show()
+				$('#cambiaImpostazioni').hide()
 			}
 
 			function onclickCloseImpostazioni(){
-				$("#divImpostazioni").html("<button id='cambiaImpostazioni' onclick='scrivi_form_impostazioni()'> cambia impostazioni </button>")
+				$("#divImpostazioni").hide()
+				$('#cambiaImpostazioni').show()
 			}
 
 			function onclickBottoneSelezionaImmagini(){

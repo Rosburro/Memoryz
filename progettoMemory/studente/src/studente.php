@@ -26,6 +26,7 @@
 					<div id='partita' class='partita'></div>";
 			echo "<script>let stanza='$_SESSION[stanzaSelezionata]'</script>";
 		}else{
+			session_destroy();
 			echo "
 			<script type='text/javascript' src='../static/studenteAccesso.js'></script>
 				<form action='partecipa.php' method='get' align='center'>

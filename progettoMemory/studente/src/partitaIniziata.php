@@ -17,7 +17,7 @@
         //controllo se il round e` iniziato
         //echo 'in corso = '.$inCorso[0][0];
         if($inCorso==1){
-            $inCorso = mysqli_fetch_all($connessione-> query("select r.inCorso, img_round, inizio_round, TTLImg-(utc_time()-inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_GET[nome_stanza]'"));
+            $inCorso = mysqli_fetch_all($connessione-> query("select r.inCorso, img_round, inizio_round, TTLImg-TIMEDIFF(utc_time(),inizio_round) from round r join stanze s on s.nome_stanza=r.nome_stanza where r.nome_stanza='$_GET[nome_stanza]'"));
             if(count($inCorso)!=0){
                 $inCorso=$inCorso[0];
                 //print_r($inCorso);

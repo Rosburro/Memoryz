@@ -1,6 +1,7 @@
 <?php 
 	session_start();
 	require "../../sql/config.php";
+	//echo $_POST['nomeStanza'];
 	$result = $connessione->query("select username from partecipanti where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nel prendere i partecipanti");
 
 /*  <ol>
@@ -9,10 +10,15 @@
   <li>Milk</li>
 </ol>  */
 
-	echo "<tr><td><ol class='listaPartecipanti'>";
+	// echo "<tr><td><ol class='listaPartecipanti'>";
+	$cont=0;
 	foreach($result as $riga){
-		echo "<li class='elementoListaPartecipanti'>$riga[username]</li>";
+		$cont++;
+		echo "<tr>
+				<td>$cont</td>
+				<td>$riga[username]</td>
+			</tr>";
 	}
-	echo "</ol></td></tr>";
+	// echo "</ol></td></tr>";
 
  ?>

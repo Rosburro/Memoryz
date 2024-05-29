@@ -3,9 +3,22 @@
 @import url('https://fonts.cdnfonts.com/css/ogdred-weary');
 @import url('https://fonts.cdnfonts.com/css/vactory-sans');
 
+*{
+    
+}
+
 body{
-    background-color: #e4f5f8;
+    /* background-color: #453a73; */
+}
+
+.divInfo{
     text-align: center;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: fit-content;
+    height: fit-content;
+    top: 30%;
 }
 .backgroundAdmin{
     z-index: -1;
@@ -17,7 +30,7 @@ body{
 #importante{
     color: darkred;
 }
-#titolo{
+.titolo{
     font-family: 'Vegan Style Personal Use', sans-serif;
     letter-spacing: .3ch;
     color: #453a73;
@@ -54,4 +67,49 @@ label{
     width: 1ch;
     word-wrap: break-word;
     font-size: 250%;
+}
+
+.h1RoundNonIniziato{
+    
+}
+
+.divImgDaIndovinare{
+    position: fixed;
+    top: 50%;
+    left: 75%;
+    resize: both;
+    transform: translate(0, -50%);
+    width: max-content;
+    height: fit-content;
+    text-align: center ;
+    align-items: center;
+}
+
+.contenitoreImg{
+    margin: auto
+}
+
+/* Roberto */
+
+.divImgDaIndovinare{
+    display: inline;
+    
+}
+
+
+.tabellaAdmin{
+    margin: auto;
+}
+
+
+
+button{
+}
+
+.pImpostazioni{
+    font-family: 'VactorySans', sans-serif !important; 
+    letter-spacing: .2ch !important;
+    color: black!important;
+    font-size: 16spt!important;
+
 }
