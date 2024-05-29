@@ -196,7 +196,7 @@ $(document).ready(function(){
         if (risposta == "" ) risposta = input.value.toLocaleLowerCase();
         guess.forEach(element => {
             element=element.toLocaleLowerCase();
-            if(element.replace(" ", "") == risposta.replace(" ", ""))corretto=true;
+            if(element.replaceAll(" ", "") == risposta.replaceAll(" ", ""))corretto=true;
         });
         
         if(corretto && !reload){
