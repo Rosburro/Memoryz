@@ -6,7 +6,4 @@ il codice funziona su host locale, se si riscontrano problemi bisogna configurar
 indirizzo di rete dei vari servizi utilizzati.
 
 
-
-problemi da risolvere
-1) si incasinano le sessioni se si lascia sullo stesso browser sia lo studente che l'admin della stanza
-2) si incasina l'orario non appena cambia il minuto (risolta)
+Bel progetto :)
