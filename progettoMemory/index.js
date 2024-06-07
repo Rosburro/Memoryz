@@ -212,7 +212,8 @@ $(document).ready(function(){
         console.log(risposta)//non riesce a leggere la variabile 
         $.post("../src/inviaGuest.php", {punteggio:punteggio, risposta:risposta}, function(dati){
             if(dati[1]=="0"){
-                alert("risposta già inviata impossibile inviarne un altra.")
+                console.log("risposta già inviata impossibile inviarne un altra.")
+                //alert("risposta già inviata impossibile inviarne un altra.")
             }
             console.log(dati)
             

@@ -2,7 +2,14 @@
 	session_start();
 	require "../../sql/config.php";
 	//echo $_POST['nomeStanza'];
-	$result = $connessione->query("select username from partecipanti where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nel prendere i partecipanti");
+	// $result = $connessione->query("select username from partecipanti where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nel prendere i partecipanti");
+
+
+	//TODO
+	$query = $connessione->prepare("select username from partecipanti where nome_stanza=:nomestanza");
+	$query->bindParam(':nomestanza', $_SESSION['nomeStanza'], PDO::PARAM_STR);
+	$query->execute();
+	$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 /*  <ol>
   <li>Coffee</li>
