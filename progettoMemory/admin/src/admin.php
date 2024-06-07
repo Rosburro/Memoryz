@@ -21,7 +21,7 @@
 
 		<!-- div contenento il nome dell personaggio raffgurato dall'immagine e l'immagine stessa -->
 		<div id='divImgDaIndovinare' class="divImgDaIndovinare" hidden>
-				<p id="nomeTizio" class="nomeTizio badge badge-info gap-2"></p>
+				<p id="nomeTizio" class="nomeTizio badge badge-info gap-2" onclick='mostraNascondiNomeTizio()' alt='cliccare per mostrare il nome'></p>
 				<img id="contenitoreImg" class="contenitoreImg" width='300'>
 		</div>
 		<!-- infomazioni sulla stanza e tabella partecipanti -->
@@ -241,8 +241,13 @@
 
 			function aggiungi_stanza($nome_stanza){//aggiunge il titolo della stanza al file
 				//TODO far si che vengano controrllare le stringhe per prevenire l'sql injection 
-				$GLOBALS['connessione']->query("insert into stanze (nome_stanza) values('$_SESSION[nomeStanza]')")
-				or die("errore nell'aggiunta della stanza");
+				// $GLOBALS['connessione']->query("insert into stanze (nome_stanza) values('$_SESSION[nomeStanza]')")
+				// or die("errore nell'aggiunta della stanza");
+
+				$query = $GLOBALS['connessione']->prepare("insert into stanze (nome_stanza) values(:nomestanza)");
+				$query->bindParam(':nomestanza',$nome_stanza, PDO::PARAM_STR);
+				$query->execute();
+
 				//TODO testare questa parte di codice
 				setta_immagini($_SESSION["immaginiSelezionate"]);
 				
@@ -253,36 +258,61 @@
 			}
 
 			function rimuovi_stanza($nome_stanza){//rimuove la stanza con il nome passato
-				$GLOBALS['connessione']->query("delete from stanze where nome_stanza='$nome_stanza'") or die("errore nell'eliminazione della stanza");
-				$GLOBALS['connessione']->query("delete from img_stanza where nome_stanza='$nome_stanza'") or die("errore nell'eliminazione delle immagini della stanza");
+				// $GLOBALS['connessione']->query("delete from stanze where nome_stanza='$nome_stanza'") or die("errore nell'eliminazione della stanza");
+				
+				$query = $GLOBALS['connessione']->prepare("delete from stanze where nome_stanza=:nomestanza");
+				$query->bindParam(':nomestanza',$nome_stanza, PDO::PARAM_STR);
+				$query->execute();
 			}
 
 			function controllo_stanza_esistente($nome_stanza){//controllo se è valido il titolo della finestra
 				if($nome_stanza=="None")return false;
 				
 				echo "<br>Nome della stanza: $nome_stanza";
-				$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente'  from stanze where nome_stanza='$nome_stanza'"))[0];
+				// $risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as esistente  from stanze where nome_stanza='$nome_stanza'"))[0];
+				
+				$query = $GLOBALS['connessione']->prepare("select count(*) as esistente  from stanze where nome_stanza=:nomestanza");
+				$query->bindParam(':nomestanza',$nome_stanza, PDO::PARAM_STR);
+				$query->execute();
+				$risultato = $query->fetchAll(PDO::FETCH_ASSOC)[0];
+
+				
 				//echo "<br>nome stanza: $risultato[1]";
-				if($risultato[0]==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 
+				if($risultato['esistente']==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 
 				else return true;
 			}
 
 			function setta_immagini($immagini){
-				$GLOBALS['connessione']->query("delete from img_stanza where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nell'eliminazione delle immagini della stanza");
+				// $GLOBALS['connessione']->query("delete from img_stanza where nome_stanza='$_SESSION[nomeStanza]'") or die("errore nell'eliminazione delle immagini della stanza");
+				
+				$query = $GLOBALS['connessione']->prepare("delete from img_stanza where nome_stanza=:nomestanza");
+				$query->bindParam(':nomestanza',$_SESSION['nomeStanza'], PDO::PARAM_STR);
+				$query->execute();
+				
 				//print_r($immagini);//debug
 				if($immagini=="all"){
 					
 					$personaggi = count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio"));
 					// echo " ".count((simplexml_load_file("../../memory.xml"))->xpath("./personaggio"));
 					for($i=0;$i<$personaggi;$i++){
-						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',$i)") or die("errore nell'inserire un immagine della stanza");
+						// $GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',$i)") or die("errore nell'inserire un immagine della stanza");
+						
+						$query = $GLOBALS['connessione']->prepare("insert into img_stanza (nome_stanza, imgIndex) values(:nomestanza,$i)");
+						$query->bindParam(':nomestanza',$_SESSION['nomeStanza'], PDO::PARAM_STR);
+						$query->execute();
+						
 						//echo $i." ";
 					}
 				}else{
 					$appoggio_immagini = $_SESSION["immaginiSelezionate"];
 					for($i=0;$i<count($appoggio_immagini);$i++){
 						// si diminuisce di uno l'index perchè è aumentato di uno (se si cambia e si mette che parte da 0 togliere il -1)
-						$GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".($appoggio_immagini[$i]-1).")") or die("errore nell'inserire un immagine della stanza");
+						// $GLOBALS['connessione']->query("insert into img_stanza (nome_stanza, imgIndex) values('$_SESSION[nomeStanza]',".($appoggio_immagini[$i]-1).")") or die("errore nell'inserire un immagine della stanza");
+						
+						$query = $GLOBALS['connessione']->prepare("insert into img_stanza (nome_stanza, imgIndex) values(:nomestanza,".($appoggio_immagini[$i]-1).")");
+						$query->bindParam(':nomestanza',$_SESSION['nomeStanza'], PDO::PARAM_STR);
+						$query->execute();
+					
 					}
 				}
 			}

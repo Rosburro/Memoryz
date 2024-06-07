@@ -1,8 +1,8 @@
 <?php
 
 
-$connessione = new PDO("mysql:host=localhost;dbname=my_sitinosetosobellino","root","");
-
+$connessione = new PDO("mysql:host=127.0.0.1;dbname=my_sitinosetosobellino","root","");
+$connessione->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //creazione delle tabelle
 	
 	$connessione -> query("create database if not exists my_sitinosetosobellino;") or die('creazione del db fallita');

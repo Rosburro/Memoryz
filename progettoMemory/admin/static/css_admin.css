@@ -14,11 +14,11 @@ body{
 .divInfo{
     text-align: center;
     left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
+    position: relative;
+    transform: translate(-50%,0);
     width: fit-content;
     height: fit-content;
-    top: 30%;
+    margin-top: 5%;
 }
 .backgroundAdmin{
     z-index: -1;
@@ -75,10 +75,9 @@ label{
 
 .divImgDaIndovinare{
     position: fixed;
-    top: 50%;
-    left: 75%;
+    top: 30%;
+    left: 70%;
     resize: both;
-    transform: translate(0, -50%);
     width: max-content;
     height: fit-content;
     text-align: center ;
@@ -90,11 +89,6 @@ label{
 }
 
 /* Roberto */
-
-.divImgDaIndovinare{
-    display: inline;
-    
-}
 
 
 .tabellaAdmin{

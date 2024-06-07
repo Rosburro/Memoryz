@@ -28,6 +28,5 @@ function espelliPersona(username){
 	console.log('usernae da espellere>'+username)
 	$.post('../src/espelliUser.php', {username:username}, function(dati){//il nome della stanza preso tramite la var si sessione
 		console.log('fatto>'+dati)
-		alert('espulsione eseguita')
 	})
 }

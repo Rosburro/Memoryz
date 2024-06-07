@@ -11,15 +11,17 @@
         $stanzaSelezionata = $_SESSION['stanzaSelezionata'];
         $username = $_SESSION['nomePartecipante'];
 
-        $query = $connessione->prepare("delete from partecipanti where nome_stanza=:stanzaSelezionata and username=:nomePartecipante") or die("errore nella cancellazione del partecipante");
-        $query->bindParam(':stanzaSelezionata', $stanzaSelezionata, PDO::PARAM_INT);
-        $query->bindParam(':nomePartecipante', $username, PDO::PARAM_STR)
+        $query = $connessione->prepare("delete from partecipanti where nome_stanza=:stanzaSelezionata and username=:nomePartecipante");
+        $query->bindParam(':stanzaSelezionata', $stanzaSelezionata, PDO::PARAM_STR);
+        $query->bindParam(':nomePartecipante', $username, PDO::PARAM_STR);
         $query->execute();
 
         // FINE PROVA
 
-        unset($_SESSION['nomePartecipante']);
-        unset($_SESSION['stanzaSelezionata']);
+        session_destroy();
+        //precedente
+        // unset($_SESSION['nomePartecipante']);
+        // unset($_SESSION['stanzaSelezionata']);
     }catch (\Throwable $th) {
         //in ogni caso ritorna li
         //throw $th;
