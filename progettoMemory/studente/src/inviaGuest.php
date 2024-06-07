@@ -4,10 +4,36 @@
     //require "roundInCorso.php";//mette a disposizione tutto ciò che serve
     //todo vedere se c'è qualche problema qui
     try {
-        $inCorso = $inCorso = mysqli_fetch_all($connessione->query("select (utc_time()-inizio_round)<=TTLImg from round r join stanze s on s.nome_stanza=r.nome_stanza where s.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+        // $inCorso = mysqli_fetch_all($connessione->query("select (utc_time()-inizio_round)<=TTLImg from round r join stanze s on s.nome_stanza=r.nome_stanza where s.nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+        
+        // INIZIO PROVA
+
+        $nome_stanza = $_SESSION['stanzaSelezionata'];
+
+        $query = $connessione->prepare("select (utc_time()-inizio_round)<=TTLImg from round r join stanze s on s.nome_stanza=r.nome_stanza where s.nome_stanza=:nome_stanza");
+        $query->bindParam(':nome_stanza',$nome_stanza, PDO::PARAM_STR);
+        $query->execute();
+
+        // FINE PROVA
+
         //echo "ttl: ".$inCorso."; ";
         if($inCorso>0){
-            $inviato =  mysqli_fetch_all($connessione->query("select inviato from partecipanti where username='$_SESSION[nomePartecipante]' and nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+            
+            // $inviato =  mysqli_fetch_all($connessione->query("select inviato from partecipanti where username='$_SESSION[nomePartecipante]' and nome_stanza='$_SESSION[stanzaSelezionata]'"))[0][0];
+            
+            // INIZIO PROVA
+
+            $nomePartecipante = $_SESSION['nomePartecipante'];
+            $nome_stanza = $_SESSION['nome_stanza'];
+
+            $query = $connessione->prepare("select inviato from partecipanti where username=:nomePartecipante and nome_stanza=:nome_stanza");
+            $query->bindParam(':nomePartecipante', $username, PDO::PARAM_STR);
+            $query->bindParam(':nome_stanza', $nome_stanza, PDO::PARAM_STR);
+            $query->execute();
+
+
+            // FINE PROVA 
+
             //echo "inviato: ".$inviato."; ";
             //print_r($inviato);
             if($inviato==0){
