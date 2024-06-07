@@ -17,6 +17,7 @@
 		echo "<tr>
 				<td>$cont</td>
 				<td>$riga[username]</td>
+				<td><button class='btn btn-outline btn-error btn-xs' onclick='espelliPersona(\"$riga[username]\")'>-</button></td>
 			</tr>";
 	}
 	// echo "</ol></td></tr>";

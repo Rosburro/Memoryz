@@ -10,9 +10,10 @@ $(document).ready(function(){
 			<th>partecipante</th>\
 			<th>punteggio</th>\
 			<th>risposta</th>\
+			<th>espelli</th>\
 		</tr>')
 	
-	setInterval(funzionePunteggio, 1_000)//controlla i punteggi che hanno attualmente i partecipanti
+	setInterval(funzionePunteggio, 2_000)//controlla i punteggi che hanno attualmente i partecipanti
 	setInterval(funzioneAggiornaImmagine, 1_000)//aggiorna l'immagine e vede se e` iniziato o meno il round
 	setTimeout(function(){$("#iniziaTerminaRound").ready(function(){
 		$("#iniziaTerminaRound").css("pointer-events", "all")
@@ -45,4 +46,14 @@ function funzioneAggiornaImmagine(){
 function onClickterminaPartita(){
 	//window.location.href="finePartita.php"
 	location.replace("finePartita.php")
+}
+
+
+
+
+function espelliPersona(username){
+	$.post('../src/espelliUser.php', {username:username}, function(dati){//il nome della stanza preso tramite la var si sessione
+		console.log('fatto')
+		alert('espulsione eseguita')
+	})
 }

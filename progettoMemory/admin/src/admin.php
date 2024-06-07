@@ -51,8 +51,12 @@
 				$_SESSION["roundInCorso"]=false;
 				$_SESSION['alTermine']=true;
 				//$_SESSION['n_round']=0;
-				//$connessione->query("delete from partecipanti where nome_stanza='$_SESSION[nomeStanza]'");
-				$connessione->query("update stanze set inCorso=1, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'");
+				
+				$query = $connessione->prepare("update stanze set inCorso=1, ingAperto=0 where nome_stanza=:nomestanza");
+				$query->bindParam(':nomestanza', $_SESSION['nomeStanza'], PDO::PARAM_STR);
+				$query->execute();
+				
+				// $connessione->query("update stanze set inCorso=1, ingAperto=0 where nome_stanza='$_SESSION[nomeStanza]'"); //vecchia
 				
 				echo "<script>$('#tabellaAdmin').ready(
 					function(){

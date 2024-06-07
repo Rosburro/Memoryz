@@ -2,11 +2,14 @@ $(document).ready(function(){
 
 	setInterval(function(){//far si che esista una variabile booleana che se falsa non fa partire l'if
 		console.log('entrato')
-		$("#partita").load("partitaIniziata.php?nome_stanza="+stanza, function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
+		$("#partita").load("partitaIniziata.php", function(dati,stat,xhr){//non passo alcun dato poichè è tuttosalvato nella sessione
 			if(dati=="fine"){//se la stanza e` chiusa
 				onClickEsciDallaStanza()
 			}
-			
+
+			if(dati=="espulso"){
+				window.location.href='../src/resetta.php';
+			}
 			console.log(dati.indexOf(";"))
 			//non la cosa migliore del mondo ma funzia
 			//si potrebbe cambiare con un get o un post magari
@@ -17,10 +20,7 @@ $(document).ready(function(){
 					window.location.href= "../src/round.php";
 				}
 				
-			}//todo else fine round
-				
-				//window.location.href="roundInCorso?TTL="+ttl+"&img="+img+"&start="+differenzaStart+""
-
+			}
 			
-		})}, 1_000)
+		})}, 1_500)
 })
