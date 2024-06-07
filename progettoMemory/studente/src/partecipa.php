@@ -4,7 +4,10 @@
 	require "../../sql/config.php";
 	if(isset($_GET['inviaForm'])){
 		//TODO sistemare il nome a modinjo o ci sono casini, (non case sensitive)
+		//defence for injection
+		
 		if(!isset($_GET['stanzaSelezionata'])) header("location: studente.php");
+
 		echo  $_GET["stanzaSelezionata"];
 		if(controllo_nome_partecipante($_GET['nomePartecipante'], $_GET["stanzaSelezionata"])){
 			//echo "entrato qui ppppp";
@@ -42,10 +45,13 @@
 	// }
 
 	function controllo_nome_partecipante($nome_partecipante, $nome_stanza){//controllo se è valido il titolo della finestra
+		//sql injection
+		$_GET['nomePartecipante'] = $nome_partecipante;
 		if($nome_partecipante=="None" || $nome_partecipante=="" || str_replace(" ", "", $nome_partecipante)==""){
 			//echo "entrato dentro l'if";
 			return false;
 		}
+
 		$risultato = mysqli_fetch_all($GLOBALS['connessione']->query("select count(*) as 'esistente' from partecipanti where nome_stanza='$nome_stanza' and username='$nome_partecipante'"))[0];
 		
 		if($risultato[0]==1)return false;//se e` stata trovata una stanza con quel nome allora non va bene 

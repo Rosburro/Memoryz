@@ -1,16 +1,21 @@
 <?php
 
-	$connessione = new mysqli('127.0.0.1', 'root', '');
-	if(mysqli_connect_errno()){
-		echo 'errore con il db';
-		exit();
-	}
+	// $connessione = new mysqli('127.0.0.1', 'root', ''); 
+	$connessione = new PDO('mysql:host=127.0.0.1;dbname=my_sitinosetosobellino', 'root', '');//connessione db
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //da vedere se implementare
+
+	// if(mysqli_connect_errno()){
+	// 	echo 'errore con il db';
+	// 	exit();
+	// }
+
+
 	
 
 //creazione delle tabelle
 	
-	$connessione -> query("create database if not exists my_sitinosetosobellino;") or die('creazione del db fallita');
-	$connessione -> query("use my_sitinosetosobellino") or die("errore nell'utilizzo del db");
+	// $connessione -> query("create database if not exists my_sitinosetosobellino;") or die('creazione del db fallita');
+	// $connessione -> query("use my_sitinosetosobellino") or die("errore nell'utilizzo del db");
 	$connessione-> query("create table if not exists stanze
 							(
 								nome_stanza varchar(20) primary key,

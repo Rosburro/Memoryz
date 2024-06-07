@@ -24,7 +24,6 @@
 					<p>max round: $_SESSION[round]<br>tempo ogni round: $_SESSION[TTL]s</p>
 
 					<div id='partita' class='partita'></div>";
-			echo "<script>let stanza='$_SESSION[stanzaSelezionata]'</script>";
 		}else{
 			session_destroy();
 			echo "
